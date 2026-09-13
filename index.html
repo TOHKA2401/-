@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es" class="dark-mode">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>C.O.R.E by JOEL</title>
+    <title>C.O.R.E. v2.5 by JOEL</title>
     
-    <!-- CONEXIÓN PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#18191a">
     <link rel="apple-touch-icon" href="icon-192.png">
@@ -50,20 +48,15 @@
         #custom-alert-modal, #confirm-modal { z-index: 3000; }
         
         .login-card { background: var(--bg-card); padding: 40px 30px; border-radius: 16px; width: 90%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: smoothFadeIn 0.4s ease-out; }
-        .modal-card { background: var(--bg-card); padding: 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; overflow-x: hidden !important; animation: smoothFadeIn 0.3s ease-out; }
+        .modal-card { background: var(--bg-card); padding: 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; overflow-x: hidden !important; animation: smoothFadeIn 0.3s ease-out; width: 90%; max-width: 450px;}
         
-        .modal-sm { width: 90%; max-width: 350px; }
-        .modal-md { width: 90%; max-width: 400px; }
-        .modal-lg { width: 90%; max-width: 450px; }
-        .modal-xl { width: 90%; max-width: 650px; }
+        .modal-sm { max-width: 350px; } .modal-md { max-width: 400px; } .modal-lg { max-width: 500px; } .modal-xl { max-width: 650px; }
 
         .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); }
-        
         #confirm-modal .modal-footer { justify-content: center !important; }
 
         .grid-2-cols { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; }
         .flex-row-gap { display: flex; gap: 15px; align-items: flex-end; margin-bottom: 10px; }
-        .w-35 { width: 35%; } .w-65 { width: 65%; }
 
         .meta-detail-layout { padding: 0; overflow: hidden; display: flex; flex-direction: row; align-items: center;}
         .meta-detail-img { width: 35%; background: transparent; position: relative; padding: 20px; display: flex; justify-content: center; align-items: center; }
@@ -74,11 +67,9 @@
         
         .app-header-premium { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 20px 25px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 25px; }
         .header-brand { display: flex; align-items: center; gap: 15px; }
-        
         .brand-icon-box { background: transparent; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease-in-out; flex-shrink: 0;}
         .brand-icon-box img { width: 100%; height: 100%; object-fit: contain; }
         .brand-icon-box:hover { transform: scale(1.05); }
-        
         .brand-text-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
         .brand-text-container h2 { margin: 0; font-size: 1.6em; color: var(--text-main); letter-spacing: 1px; line-height: 1; }
         .brand-subtitle { font-size: 10px; color: var(--primary); font-weight: 800; letter-spacing: 1.5px; line-height: 1; margin: 0; }
@@ -119,7 +110,6 @@
         #detalle-inline-titulo { padding-left: 16px; margin: 15px 0 15px 0; color: var(--primary); text-align: center; }
 
         .grafico-container { background: var(--bg-card); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; max-width: 700px; margin-left: auto; margin-right: auto;}
-        
         .leyenda-grafico { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; width: 100%; max-width: 500px;}
         .leyenda-item { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);}
         .leyenda-color-txt { display: flex; align-items: center; }
@@ -133,7 +123,6 @@
         th { background: rgba(255,255,255,0.02); font-size: 0.85em; text-transform: uppercase; color: var(--text-muted); text-align: center !important; padding: 14px 16px; border-bottom: 1px solid var(--border); }
         td { padding: 14px 16px; text-align: center; border-bottom: 1px solid var(--border); }
         tr:last-child td { border-bottom: none; }
-        
         .col-detalle { text-align: left !important; }
         .fin-align { text-align: right !important; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
@@ -205,6 +194,12 @@
         .eye-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; transition: all 0.2s ease; }
         .eye-btn:hover { color: var(--primary); background: rgba(0, 153, 168, 0.15); transform: translateY(-50%) scale(1.1); }
 
+        /* LISTA RECURRENTES */
+        .rec-item { padding: 15px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .rec-item:last-child { border-bottom: none; }
+        .rec-titulo { font-weight: 600; color: #fff; margin-bottom: 4px; }
+        .rec-detalle { font-size: 11px; color: var(--text-muted); }
+
         @media (max-width: 768px) {
             #app-container { padding: 0 15px 30px 15px; margin-top: 15px; }
             .app-header-premium { flex-direction: column; align-items: stretch; gap: 20px; padding: 20px; }
@@ -212,7 +207,6 @@
             .header-brand { justify-content: center; text-align: center; flex-direction: column; gap: 10px; align-items: center !important; }
             .brand-text-container { align-items: center !important; text-align: center !important; width: 100%; }
             
-            /* CORRECCIÓN DE ESPACIADO EN CAMPOS APILADOS MÓVIL */
             .grid-2-cols > div:nth-child(2) { margin-top: 15px !important; }
 
             .header-actions { width: 100%; display: flex; gap: 10px; }
@@ -316,7 +310,7 @@
                     <img src="icon-192.png" alt="Logo">
                 </div>
                 <div class="brand-text-container">
-                    <h2>C.O.R.E</h2>
+                    <h2>C.O.R.E.</h2>
                     <div class="brand-subtitle">BY JOEL</div>
                     <div id="last-session-trigger" class="session-trigger" onclick="toggleSessionHistory()"></div>
                     <div id="session-history-container" class="hidden fade-in"></div>
@@ -334,13 +328,14 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="cambiarPestana('vista-general', this)">General</button>
             <button class="tab-btn" onclick="cambiarPestana('pestana-activos', this)">Activos</button>
-            <button class="tab-btn" onclick="cambiarPestana('movimientos', this)">Movimientos</button>
+            <button class="tab-btn" onclick="cambiarPestana('movimientos', this)">Historial</button>
             <button class="tab-btn" onclick="cambiarPestana('metas', this)">Metas</button>
-            <button class="tab-btn" onclick="cambiarPestana('configuracion', this)">Configuración</button>
+            <!-- NUEVA PESTAÑA: DEUDAS -->
+            <button class="tab-btn" onclick="cambiarPestana('pestana-deudas', this)">Deudas</button>
+            <button class="tab-btn" onclick="cambiarPestana('configuracion', this)">Opciones</button>
         </div>
 
         <div id="vista-general" class="tab-content active fade-in">
-            
             <div class="cards-grid">
                 <div class="card" onclick="toggleDetalleInline('saldo', this)">
                     <span class="card-label">Liquidez total</span>
@@ -385,20 +380,17 @@
             </div>
 
             <div class="grafico-container fade-in">
-                <h3 style="color: var(--text-muted); margin-bottom: 5px;">Distribución de ingresos</h3>
+                <h3 style="color: var(--text-muted); margin-bottom: 5px;">Distribución de Gastos (Mes Actual)</h3>
                 
                 <div style="position: relative; width: 240px; height: 240px; margin: 20px 0;">
                     <canvas id="flujoChart"></canvas>
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none;">
-                        <span style="font-size: 11px; color: var(--text-muted); display: block;">Total ingresado</span>
+                        <span style="font-size: 11px; color: var(--text-muted); display: block;">Total Gastado</span>
                         <span id="total-flujo" style="font-weight: bold; font-size: 18px; color: var(--text-main);">$0</span>
                     </div>
                 </div>
 
-                <div class="leyenda-grafico">
-                    <div class="leyenda-item"><div class="leyenda-color-txt"><div class="color-dot" style="background: var(--ingreso);"></div>Disponible</div><span id="pct-ingreso">$0.00 (0%)</span></div>
-                    <div class="leyenda-item"><div class="leyenda-color-txt"><div class="color-dot" style="background: var(--primary);"></div>Ahorrado</div><span id="pct-ahorro">$0.00 (0%)</span></div>
-                    <div class="leyenda-item"><div class="leyenda-color-txt"><div class="color-dot" style="background: var(--egreso);"></div>Gastado</div><span id="pct-egreso">$0.00 (0%)</span></div>
+                <div class="leyenda-grafico" id="leyenda-gastos-container">
                 </div>
                 <div id="analisis-mensual" class="analisis-box fade-in">Cargando análisis...</div>
             </div>
@@ -411,9 +403,7 @@
                 </div>
                 <button onclick="abrirModalActivo()" style="background: var(--activo);">+ Registrar</button>
             </div>
-
-            <div class="activos-grid" id="contenedor-activos">
-            </div>
+            <div class="activos-grid" id="contenedor-activos"></div>
         </div>
 
         <div id="movimientos" class="tab-content fade-in">
@@ -451,9 +441,24 @@
                 </div>
                 <button onclick="abrirModalMeta()">+ Registrar</button>
             </div>
-
             <div class="metas-grid-compact fade-in" id="contenedor-metas-activas"></div>
             <div class="metas-grid-compact fade-in hidden" id="contenedor-metas-archivadas" style="opacity: 0.85;"></div>
+        </div>
+
+        <!-- NUEVA PESTAÑA: DEUDAS INDIVIDUALES -->
+        <div id="pestana-deudas" class="tab-content fade-in">
+            <div class="metas-top-bar">
+                <div>
+                    <h3 style="margin: 0 0 15px 0; color: var(--text-main); font-size: 1.5em;">Amortización de Deudas</h3>
+                    <div class="sub-tabs-container">
+                        <button class="sub-tab-btn active" onclick="cambiarSubPestanaDeudas('activas', this)">Pendientes</button>
+                        <button class="sub-tab-btn" onclick="cambiarSubPestanaDeudas('pagadas', this)">Liquidadas</button>
+                    </div>
+                </div>
+                <button onclick="abrirModalNuevaDeuda()" style="background: var(--deuda);">+ Nueva Deuda</button>
+            </div>
+            <div class="metas-grid-compact fade-in" id="contenedor-deudas-activas"></div>
+            <div class="metas-grid-compact fade-in hidden" id="contenedor-deudas-pagadas" style="opacity: 0.85;"></div>
         </div>
 
         <div id="configuracion" class="tab-content fade-in">
@@ -466,6 +471,19 @@
                     <button class="profile-btn btn-edit-profile" onclick="abrirModalPerfil()">Editar perfil</button>
                 </div>
             </div>
+
+            <div class="config-item" style="border-left: 4px solid var(--purple); flex-direction: column; align-items: stretch; padding: 0; overflow: hidden;">
+                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="margin-bottom: 5px; color: var(--text-main);">Pagos Automáticos</h3>
+                        <span style="color: var(--text-muted); font-size: 13px;">Programa el pago automático de tus servicios.</span>
+                    </div>
+                    <button style="background: var(--purple);" onclick="abrirModalRecurrente()">+ Agregar</button>
+                </div>
+                <div id="lista-recurrentes" style="background: rgba(0,0,0,0.2); max-height: 200px; overflow-y: auto;">
+                    <!-- Se llena con JS -->
+                </div>
+            </div>
             
             <div class="config-item" style="border-left: 4px solid var(--text-muted);">
                 <div>
@@ -476,7 +494,7 @@
         </div>
     </div>
 
-    <!-- Modales -->
+    <!-- Modales Originales Modificados -->
     <div id="registro-boveda-modal" class="modal-overlay"><div class="modal-card modal-sm"><h3 style="color: var(--primary);">Crear nueva cuenta</h3><p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Se generará un archivo en blanco.</p><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Crea tu usuario:</label><input type="text" id="new-boveda-user" placeholder="Ej. juanperez"><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Crea tu contraseña:</label><input type="password" id="new-boveda-pass" placeholder="••••••••"><div class="modal-footer"><button onclick="cerrarModal('registro-boveda-modal')" class="btn-secondary">Cancelar</button><button onclick="generarNuevaBoveda()">Generar</button></div></div></div>
     
     <div id="registro-modal" class="modal-overlay"><div class="modal-card modal-md">
@@ -486,26 +504,31 @@
             <option value="Ingreso">Ingreso</option>
             <option value="Egreso">Gasto</option>
             <option value="Ahorro">Ahorro</option>
-            <option value="Deuda">Préstamo</option>
-            <option value="PagoDeuda">Pago de deuda</option>
+            <option value="Deuda">Préstamo Adquirido (Solo liquidez)</option>
+            <option value="PagoDeuda">Abono a Deuda (Manual)</option>
         </select>
         
-        <!-- Switch para Gasto Hormiga -->
+        <!-- NUEVO: CATEGORÍA PARA EGRESOS -->
+        <div id="caja-categoria-egreso" class="hidden">
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Categoría del gasto:</label>
+            <select id="reg-categoria-gasto" style="margin-bottom: 15px;">
+                <option value="Alimentación">Alimentación 🍔</option>
+                <option value="Transporte">Transporte 🚗</option>
+                <option value="Servicios Básicos">Servicios Básicos ⚡</option>
+                <option value="Vivienda">Vivienda 🏠</option>
+                <option value="Entretenimiento">Entretenimiento 🎬</option>
+                <option value="Salud">Salud 💊</option>
+                <option value="Educación">Educación 📚</option>
+                <option value="Otros Gastos">Otros Gastos 🛒</option>
+            </select>
+        </div>
+
         <div id="caja-gasto-hormiga" class="config-item hidden" style="padding: 12px 15px; margin-bottom: 15px; background: rgba(255,255,255,0.02); box-shadow: none; border: 1px solid var(--border);">
             <div>
                 <h4 style="margin-bottom: 2px; font-size: 14px;">Gasto hormiga 🐜</h4>
                 <span style="color: var(--text-muted); font-size: 11px;">Marcar como gasto pequeño/diario.</span>
             </div>
             <label class="switch"><input type="checkbox" id="reg-gasto-hormiga"><span class="slider"></span></label>
-        </div>
-
-        <!-- Switch para Deuda Pasada -->
-        <div id="caja-deuda-pasada" class="config-item hidden" style="padding: 12px 15px; margin-bottom: 15px; background: rgba(255,255,255,0.02); box-shadow: none; border: 1px solid var(--border);">
-            <div>
-                <h4 style="margin-bottom: 2px; font-size: 14px;">Deuda pasada</h4>
-                <span style="color: var(--text-muted); font-size: 11px;">No suma liquidez, solo registra el saldo a pagar.</span>
-            </div>
-            <label class="switch"><input type="checkbox" id="reg-deuda-pasada"><span class="slider"></span></label>
         </div>
 
         <div id="subtipo-ahorro-container" class="hidden">
@@ -540,36 +563,82 @@
         <h3 style="color: var(--activo);">Registrar bien / activo</h3>
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Detalle:</label>
         <input type="text" id="act-nombre" placeholder="Ej. Automóvil Toyota Yaris">
-        
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Categoría:</label>
         <select id="act-categoria">
-            <option value="Vehículo">Vehículo</option>
-            <option value="Inmueble">Inmueble</option>
-            <option value="Tecnología">Tecnología</option>
-            <option value="Inversión">Inversión</option>
-            <option value="Otro">Otro</option>
+            <option value="Vehículo">Vehículo</option><option value="Inmueble">Inmueble</option><option value="Tecnología">Tecnología</option><option value="Inversión">Inversión</option><option value="Otro">Otro</option>
         </select>
-
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Valor ($):</label>
         <input type="number" inputmode="decimal" id="act-valor" placeholder="0.00" step="0.01" min="0" onkeypress="if(event.key === 'Enter') guardarActivo()">
-        
         <div class="modal-footer"><button onclick="cerrarModal('activo-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarActivo()" style="background: var(--activo);">Registrar activo</button></div>
     </div></div>
 
     <div id="meta-modal" class="modal-overlay">
         <div class="modal-card modal-md">
-            <h3>Formulario</h3>
+            <h3>Formulario Meta</h3>
             <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Detalle:</label>
             <input type="text" id="meta-nombre" placeholder="Ej. Laptop">
-            
             <div class="grid-2-cols">
                 <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Costo ($):</label><input type="number" inputmode="decimal" id="meta-costo" placeholder="0.00" step="0.01" min="0"></div>
                 <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Ahorro inicial ($):</label><input type="number" inputmode="decimal" id="meta-ahorrado" placeholder="0.00" step="0.01" min="0"></div>
             </div>
             <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Descripción (opcional):</label>
             <textarea id="meta-descripcion" placeholder="Detalles del producto..."></textarea>
-            
             <div class="modal-footer"><button onclick="cerrarModal('meta-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarMeta()">Crear</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVA DEUDA INDIVIDUAL -->
+    <div id="modal-nueva-deuda" class="modal-overlay">
+        <div class="modal-card modal-md">
+            <h3 style="color: var(--deuda);">Crear Registro de Deuda</h3>
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">¿A quién o a qué le debes?</label>
+            <input type="text" id="nd-nombre" placeholder="Ej. Tarjeta de Crédito, Préstamo Tía">
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Monto total de la deuda ($):</label>
+            <input type="number" inputmode="decimal" id="nd-monto" placeholder="0.00" step="0.01" min="0.01">
+            
+            <div class="config-item" style="padding: 12px 15px; margin-bottom: 15px; background: rgba(255,255,255,0.02); box-shadow: none; border: 1px solid var(--border);">
+                <div>
+                    <h4 style="margin-bottom: 2px; font-size: 14px;">Deuda Pasada (Pre-existente)</h4>
+                    <span style="color: var(--text-muted); font-size: 11px;">Actívalo si es una deuda vieja. Si es un préstamo nuevo que te dio dinero HOY en mano, apágalo.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="nd-es-pasada" checked><span class="slider"></span></label>
+            </div>
+            
+            <div class="modal-footer"><button onclick="cerrarModal('modal-nueva-deuda')" class="btn-secondary">Cancelar</button><button onclick="guardarNuevaDeuda()" style="background: var(--deuda);">Crear Deuda</button></div>
+        </div>
+    </div>
+
+    <div id="modal-pago-deuda" class="modal-overlay">
+        <div class="modal-card modal-sm">
+            <h3 style="color: var(--deuda);" id="pd-titulo">Abonar a Deuda</h3>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <span style="font-size: 12px; color: var(--text-muted); display: block;">Saldo Pendiente</span>
+                <span style="font-size: 24px; font-weight: bold; color: var(--deuda);" id="pd-saldo-pendiente">$0.00</span>
+            </div>
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Monto a pagar hoy ($):</label>
+            <input type="number" inputmode="decimal" id="pd-monto" placeholder="0.00" step="0.01" min="0.01">
+            <div class="modal-footer"><button onclick="cerrarModal('modal-pago-deuda')" class="btn-secondary">Cancelar</button><button onclick="procesarPagoDeuda()" style="background: var(--deuda);">Registrar Pago</button></div>
+        </div>
+    </div>
+
+    <div id="modal-recurrente" class="modal-overlay">
+        <div class="modal-card modal-md">
+            <h3 style="color: var(--purple);">Nuevo Pago Automático</h3>
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Detalle del pago:</label>
+            <input type="text" id="rec-nombre" placeholder="Ej. Plan Celular Claro">
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Categoría:</label>
+            <select id="rec-categoria">
+                <option value="Servicios Básicos">Servicios Básicos ⚡</option>
+                <option value="Entretenimiento">Entretenimiento 🎬</option>
+                <option value="Vivienda">Vivienda 🏠</option>
+                <option value="Educación">Educación 📚</option>
+                <option value="Otros Gastos">Otros Gastos 🛒</option>
+            </select>
+            <div class="grid-2-cols">
+                <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Monto ($):</label><input type="number" inputmode="decimal" id="rec-monto" placeholder="0.00" step="0.01" min="0.01"></div>
+                <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Día del mes:</label><input type="number" inputmode="numeric" id="rec-dia" placeholder="15" min="1" max="31"></div>
+            </div>
+            <div class="modal-footer"><button onclick="cerrarModal('modal-recurrente')" class="btn-secondary">Cancelar</button><button onclick="guardarRecurrente()" style="background: var(--purple);">Programar</button></div>
         </div>
     </div>
     
@@ -620,17 +689,21 @@
     </div>
 
     <script>
-        let misDatos = null; let tarjetaActiva = null; let indiceMetaActualVista = null; let graficoCircular = null;
+        let misDatos = null; let tarjetaActiva = null; let indiceMetaActualVista = null; let indiceDeudaAbono = null; let graficoCircular = null;
         let accionConfirmadaPendiente = null; let accionCancelarPendiente = null;
 
         document.addEventListener("DOMContentLoaded", () => {
             const dataGuardada = localStorage.getItem('tohka_boveda_data');
             if(dataGuardada) {
                 misDatos = JSON.parse(dataGuardada);
+                if(!misDatos.datos.deudas) misDatos.datos.deudas = [];
+                if(!misDatos.datos.recurrentes) misDatos.datos.recurrentes = [];
+
                 document.getElementById('last-session-trigger').textContent = "Última sesión: " + formatearFechaElegante(misDatos.seguridad.historial_sesiones[0]);
                 document.getElementById('login-modal').style.display = 'none'; 
                 document.getElementById('app-container').style.display = 'block';
                 
+                procesarGastosRecurrentes(); 
                 limpiarFiltrosAvanzados(); popularSelectsAvanzados(); actualizarTodo(); renderizarDatosPerfil();
             } else {
                 document.getElementById('login-modal').style.display = 'flex';
@@ -682,12 +755,7 @@
             document.getElementById('confirm-modal').style.display = 'flex';
         }
 
-        function ejecutarCancelarConfirmacion() { 
-            cerrarModal('confirm-modal'); 
-            if(accionCancelarPendiente) {
-                accionCancelarPendiente();
-            }
-        }
+        function ejecutarCancelarConfirmacion() { cerrarModal('confirm-modal'); if(accionCancelarPendiente) accionCancelarPendiente(); }
 
         function toggleTohkaModal(mostrar) { const modal = document.getElementById('tohka-modal'); if (mostrar) { document.body.classList.add('no-scroll'); modal.style.display = 'flex'; } else { document.body.classList.remove('no-scroll'); modal.style.display = 'none'; } }
 
@@ -703,7 +771,6 @@
         }
 
         function actualizarNombreArchivo(input, spanId) { document.getElementById(spanId).textContent = input.files[0] ? input.files[0].name : "Ningún archivo"; }
-        
         function cerrarTodosModales() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); cerrarDetalleInline(); document.body.classList.remove('no-scroll'); }
         function cerrarModal(id) { document.getElementById(id).style.display = 'none'; if(id === 'tohka-modal') document.body.classList.remove('no-scroll'); }
         
@@ -753,6 +820,8 @@
                         if (!misDatos.seguridad.perfil) misDatos.seguridad.perfil = { nombres: "" };
                         if (!misDatos.datos.metas) misDatos.datos.metas = [];
                         if (!misDatos.datos.activos) misDatos.datos.activos = [];
+                        if (!misDatos.datos.deudas) misDatos.datos.deudas = [];
+                        if (!misDatos.datos.recurrentes) misDatos.datos.recurrentes = [];
                         misDatos.datos.metas.forEach(m => { if(!m.estado) m.estado = 'activa'; if(!m.fechaCreacion) m.fechaCreacion = 'Desconocida'; if(!m.id) m.id = crypto.randomUUID(); });
 
                         if (!misDatos.seguridad.historial_sesiones) {
@@ -765,10 +834,11 @@
                         if(misDatos.seguridad.historial_sesiones.length > 5) { misDatos.seguridad.historial_sesiones = misDatos.seguridad.historial_sesiones.slice(0, 5); }
 
                         guardarEnMemoriaSession();
-
+                        
                         document.getElementById('last-session-trigger').textContent = "Última sesión: " + formatearFechaElegante(misDatos.seguridad.historial_sesiones[0]);
                         document.getElementById('login-modal').style.display = 'none'; document.getElementById('app-container').style.display = 'block';
                         
+                        procesarGastosRecurrentes();
                         limpiarFiltrosAvanzados(); popularSelectsAvanzados(); actualizarTodo(); renderizarDatosPerfil();
                     } else { mostrarAlerta("Acceso denegado", "Credenciales incorrectas para el archivo seleccionado."); }
                 } catch (err) { mostrarAlerta("Error de archivo", "El archivo seleccionado está dañado o no es válido."); }
@@ -800,7 +870,7 @@
             
             const hashPass = await hashSHA256(pass);
             
-            const nuevaBoveda = { "seguridad": { "usuario": user, "clave": hashPass, "ultima_sesion": new Date().toISOString(), "perfil": { "nombres": "" } }, "datos": { "saldo_disponible": 0, "ahorros_totales": 0, "deudas_totales": 0, "transacciones": [], "metas": [], "activos": [] } };
+            const nuevaBoveda = { "seguridad": { "usuario": user, "clave": hashPass, "ultima_sesion": new Date().toISOString(), "perfil": { "nombres": "" } }, "datos": { "saldo_disponible": 0, "ahorros_totales": 0, "deudas_totales": 0, "transacciones": [], "metas": [], "activos": [], "deudas": [], "recurrentes": [] } };
             const blob = new Blob([JSON.stringify(nuevaBoveda, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `Boveda_${user}_NUEVA.json`; a.click();
             cerrarModal('registro-boveda-modal'); mostrarAlerta("¡Cuenta creada!", `Se ha descargado el archivo "Boveda_${user}_NUEVA.json".\nUtilízalo para iniciar carga.`);
         }
@@ -809,9 +879,15 @@
         function clickBannerPatrimonio() { const btnPatrimonio = document.querySelector('.tab-btn[onclick*="pestana-activos"]'); if(btnPatrimonio) cambiarPestana('pestana-activos', btnPatrimonio); }
         
         function cambiarSubPestanaMetas(tipo, btn) {
-            document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+            document.querySelectorAll('#metas .sub-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
             if(tipo === 'activas') { document.getElementById('contenedor-metas-activas').classList.remove('hidden'); document.getElementById('contenedor-metas-archivadas').classList.add('hidden'); } 
             else { document.getElementById('contenedor-metas-activas').classList.add('hidden'); document.getElementById('contenedor-metas-archivadas').classList.remove('hidden'); }
+        }
+
+        function cambiarSubPestanaDeudas(tipo, btn) {
+            document.querySelectorAll('#pestana-deudas .sub-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+            if(tipo === 'activas') { document.getElementById('contenedor-deudas-activas').classList.remove('hidden'); document.getElementById('contenedor-deudas-pagadas').classList.add('hidden'); } 
+            else { document.getElementById('contenedor-deudas-activas').classList.add('hidden'); document.getElementById('contenedor-deudas-pagadas').classList.remove('hidden'); }
         }
         
         function toggleDetalleInline(filtro, cardElement) {
@@ -877,23 +953,83 @@
             box.innerHTML = mensaje;
         }
 
-        function renderizarGraficoJS(tI, tE, tA) {
-            let disponible = Math.max(0, misDatos.datos.saldo_disponible);
-            const total = disponible + tE + tA;
-            document.getElementById('total-flujo').innerText = "$" + total.toLocaleString('en-US', {maximumFractionDigits: 0});
+        function procesarGastosRecurrentes() {
+            const hoy = new Date();
+            const diaHoy = hoy.getDate();
+            const mesActual = hoy.getFullYear() + "-" + String(hoy.getMonth()+1).padStart(2,'0');
+
+            let procesados = 0;
+            misDatos.datos.recurrentes.forEach(rec => {
+                if (diaHoy >= rec.dia && rec.ultimo_mes_pagado !== mesActual) {
+                    if (misDatos.datos.saldo_disponible >= rec.monto) {
+                        misDatos.datos.saldo_disponible -= rec.monto;
+                        misDatos.datos.transacciones.push({
+                            fecha: hoy.toLocaleDateString('es-ES'),
+                            fechaIso: hoy.toISOString().split('T')[0],
+                            timestamp: Date.now(),
+                            tipo: 'Egreso',
+                            detalle: `🔄 Pago Automático: ${rec.nombre}`,
+                            monto: rec.monto,
+                            categoria: rec.categoria || 'Servicios Básicos',
+                            esGastoHormiga: false
+                        });
+                        rec.ultimo_mes_pagado = mesActual;
+                        procesados++;
+                    } else {
+                        mostrarAlerta("⚠️ Pago automático fallido", `No hay liquidez suficiente para procesar: ${rec.nombre} ($${rec.monto}). Se intentará de nuevo en la próxima sesión.`);
+                    }
+                }
+            });
+            if(procesados > 0) {
+                mostrarAlerta("✅ Pagos automáticos", `Se procesaron ${procesados} pagos recurrentes programados para este mes.`);
+                guardarEnMemoriaSession();
+            }
+        }
+
+        function renderizarGraficoJS() {
+            const hoy = new Date(); const mesActual = hoy.getMonth() + 1; const anioActual = hoy.getFullYear();
+            let totalMes = 0;
+            const categoriasGastos = {};
+
+            misDatos.datos.transacciones.forEach(tx => {
+                if(tx.tipo === 'Egreso' && tx.fechaIso) {
+                    const partes = tx.fechaIso.split('-');
+                    if(parseInt(partes[0]) === anioActual && parseInt(partes[1]) === mesActual) {
+                        totalMes += tx.monto;
+                        let cat = tx.categoria || 'Otros Gastos';
+                        if(!categoriasGastos[cat]) categoriasGastos[cat] = 0;
+                        categoriasGastos[cat] += tx.monto;
+                    }
+                }
+            });
+
+            document.getElementById('total-flujo').innerText = "$" + totalMes.toLocaleString('en-US', {maximumFractionDigits: 0});
             
-            const pI = total === 0 ? 0 : (disponible/total)*100;
-            const pE = total === 0 ? 0 : (tE/total)*100;
-            const pA = total === 0 ? 0 : (tA/total)*100;
+            const leyendaContainer = document.getElementById('leyenda-gastos-container');
+            leyendaContainer.innerHTML = '';
             
-            document.getElementById('pct-ingreso').innerText = `$${disponible.toLocaleString('en-US', {minimumFractionDigits: 2})} (${pI.toFixed(1)}%)`; 
-            document.getElementById('pct-egreso').innerText = `$${tE.toLocaleString('en-US', {minimumFractionDigits: 2})} (${pE.toFixed(1)}%)`; 
-            document.getElementById('pct-ahorro').innerText = `$${tA.toLocaleString('en-US', {minimumFractionDigits: 2})} (${pA.toFixed(1)}%)`; 
+            const colores = {
+                'Alimentación': '#f57c00', 'Transporte': '#0099a8', 'Servicios Básicos': '#ffd700',
+                'Vivienda': '#9b7bb3', 'Entretenimiento': '#e91e63', 'Salud': '#dc3545',
+                'Educación': '#36a420', 'Otros Gastos': '#b0b3b8'
+            };
+
+            const labels = []; const data = []; const bgColors = [];
+            
+            for (const cat in categoriasGastos) {
+                labels.push(cat);
+                data.push(categoriasGastos[cat]);
+                bgColors.push(colores[cat] || '#b0b3b8');
+                
+                const pct = totalMes > 0 ? (categoriasGastos[cat] / totalMes * 100).toFixed(1) : 0;
+                leyendaContainer.innerHTML += `<div class="leyenda-item"><div class="leyenda-color-txt"><div class="color-dot" style="background: ${colores[cat] || '#b0b3b8'};"></div>${cat}</div><span>$${categoriasGastos[cat].toLocaleString('en-US', {minimumFractionDigits: 2})} (${pct}%)</span></div>`;
+            }
 
             const ctx = document.getElementById('flujoChart').getContext('2d');
             if (graficoCircular) graficoCircular.destroy();
             
-            if(total === 0) {
+            if(totalMes === 0) {
+                leyendaContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size:12px;">No hay gastos registrados este mes.</div>';
                 graficoCircular = new Chart(ctx, {
                     type: 'doughnut',
                     data: { datasets: [{ data: [1], backgroundColor: ['#3e4042'], borderWidth: 0 }] },
@@ -905,12 +1041,8 @@
             graficoCircular = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Disponible', 'Gastado', 'Ahorrado'],
-                    datasets: [{
-                        data: [disponible, tE, tA],
-                        backgroundColor: ['#36a420', '#d32f2f', '#0099a8'],
-                        borderWidth: 0, hoverOffset: 5
-                    }]
+                    labels: labels,
+                    datasets: [{ data: data, backgroundColor: bgColors, borderWidth: 0, hoverOffset: 5 }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false, cutout: '75%',
@@ -925,6 +1057,15 @@
         function actualizarTodo() {
             calcularSaldosHistoricos();
             let totalIngresos = 0; let totalEgresos = 0; let totalAhorros = 0; let totalDeudas = 0;
+            
+            // Recalcular deudas activas
+            misDatos.datos.deudas_totales = 0;
+            if(misDatos.datos.deudas) {
+                misDatos.datos.deudas.forEach(d => {
+                    if(d.estado === 'activa') misDatos.datos.deudas_totales += (d.monto_inicial - d.monto_pagado);
+                });
+            }
+
             misDatos.datos.transacciones.forEach(tx => { 
                 if(tx.tipo === 'Ingreso' || (tx.tipo === 'Deuda' && !tx.esDeudaPasada)) totalIngresos += tx.monto; 
                 if(tx.tipo === 'Egreso' || tx.tipo === 'PagoDeuda') totalEgresos += tx.monto; 
@@ -956,25 +1097,139 @@
             if(pctGasto === '∞') { gastoEl.innerText = "Gastos sin ingresos registrados"; gastoEl.style.color = "var(--egreso)"; } 
             else { gastoEl.innerText = `Ratio de gasto: ${pctGasto.toFixed(1)}% de tus ingresos`; if(pctGasto > 80) gastoEl.style.color = "var(--egreso)"; else if(pctGasto > 50) gastoEl.style.color = "var(--deuda)"; else gastoEl.style.color = "var(--ingreso)"; }
 
-            aplicarFiltrosAvanzados(); renderizarMetasUI(); renderizarActivosUI(); renderizarGraficoJS(totalIngresos, totalEgresos, totalAhorros);
-            generarAnalisisMensual();
+            aplicarFiltrosAvanzados(); renderizarMetasUI(); renderizarActivosUI(); renderizarDeudasUI(); renderizarGraficoJS();
+            generarAnalisisMensual(); renderizarListaRecurrentes();
             
             if(tarjetaActiva) { const tipoFiltro = tarjetaActiva.onclick.toString().match(/'(.*?)'/)[1]; toggleDetalleInline(tipoFiltro, tarjetaActiva); }
             guardarEnMemoriaSession();
         }
         function animarCifra(id, val) { document.getElementById(id).innerText = "$" + val.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
         
+        function abrirModalNuevaDeuda() { document.getElementById('nd-nombre').value = ''; document.getElementById('nd-monto').value = ''; document.getElementById('nd-es-pasada').checked = true; document.getElementById('modal-nueva-deuda').style.display = 'flex'; }
+        
+        function guardarNuevaDeuda() {
+            const nombre = document.getElementById('nd-nombre').value.trim();
+            const monto = parseFloat(document.getElementById('nd-monto').value);
+            const esPasada = document.getElementById('nd-es-pasada').checked;
+
+            if(!nombre || isNaN(monto) || monto <= 0) { mostrarAlerta("Error", "Ingresa un nombre y un monto válido."); return; }
+
+            const nuevaDeuda = { id: crypto.randomUUID(), nombre: nombre, monto_inicial: monto, monto_pagado: 0, estado: 'activa', fecha_registro: new Date().toLocaleDateString('es-ES') };
+            misDatos.datos.deudas.push(nuevaDeuda);
+
+            const hoyIso = new Date().toISOString().split('T')[0];
+            
+            if(!esPasada) { misDatos.datos.saldo_disponible += monto; }
+
+            misDatos.datos.transacciones.push({ 
+                fecha: new Date().toLocaleDateString('es-ES'), 
+                fechaIso: hoyIso, timestamp: Date.now(), 
+                tipo: 'Deuda', detalle: `Adquisición Deuda: ${nombre}`, monto: monto, 
+                metaId: null, esDeudaPasada: esPasada 
+            });
+
+            actualizarTodo(); cerrarModal('modal-nueva-deuda');
+        }
+
+        function renderizarDeudasUI() {
+            const contActivas = document.getElementById('contenedor-deudas-activas'); const contPagadas = document.getElementById('contenedor-deudas-pagadas');
+            contActivas.innerHTML = ''; contPagadas.innerHTML = ''; let hayActivas = false, hayPagadas = false;
+
+            misDatos.datos.deudas.forEach((d, i) => {
+                const porcentaje = Math.min((d.monto_pagado / d.monto_inicial) * 100, 100);
+                const esPagada = d.estado === 'pagada';
+                const badge = esPagada ? '<div class="badge-cumplida">¡LIQUIDADA!</div>' : '';
+                
+                const cardClass = esPagada ? 'meta-card-compact archivada' : 'meta-card-compact';
+                const progresoColor = esPagada ? 'var(--ingreso)' : 'var(--deuda)';
+
+                const html = `<div class="${cardClass}" style="border-color: ${esPagada ? 'var(--border)' : 'transparent'};" onclick="abrirModalAbonoDeuda(${i})">${badge}<div class="meta-info" style="padding-top:5px;"><div style="color:var(--text-muted); font-size:10px; margin-bottom:5px;">${d.fecha_registro}</div><div class="meta-title" title="${escaparHTML(d.nombre)}">${escaparHTML(d.nombre)}</div><div style="font-size:18px; font-weight:bold; color:var(--text-main); margin-bottom:10px;">$${(d.monto_inicial - d.monto_pagado).toLocaleString('en-US', {minimumFractionDigits: 2})}</div><div class="barra-progreso-mini"><div class="progreso-fill-mini" style="width: ${porcentaje}%; background: ${progresoColor};"></div></div><div style="font-size:11px; color:var(--text-muted); display:flex; justify-content:space-between;"><span>Pagado: $${d.monto_pagado.toLocaleString('en-US')}</span><span style="font-weight:bold;">${porcentaje.toFixed(0)}%</span></div></div></div>`;
+                
+                if(esPagada) { contPagadas.innerHTML += html; hayPagadas = true; } 
+                else { contActivas.innerHTML += html; hayActivas = true; }
+            });
+
+            if(!hayActivas) contActivas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">¡Felicidades! No tienes deudas pendientes.</p>';
+            if(!hayPagadas) contPagadas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">Aún no tienes deudas liquidadas.</p>';
+        }
+
+        function abrirModalAbonoDeuda(index) {
+            indiceDeudaAbono = index;
+            const deuda = misDatos.datos.deudas[index];
+            if(deuda.estado === 'pagada') { mostrarAlerta("Deuda Liquidada", "Esta obligación financiera ya fue pagada en su totalidad."); return; }
+            document.getElementById('pd-titulo').innerText = `Abonar a ${deuda.nombre}`;
+            document.getElementById('pd-saldo-pendiente').innerText = "$" + (deuda.monto_inicial - deuda.monto_pagado).toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('pd-monto').value = '';
+            document.getElementById('modal-pago-deuda').style.display = 'flex';
+        }
+
+        function procesarPagoDeuda() {
+            const montoPago = parseFloat(document.getElementById('pd-monto').value);
+            const deuda = misDatos.datos.deudas[indiceDeudaAbono];
+            const pendiente = deuda.monto_inicial - deuda.monto_pagado;
+
+            if(isNaN(montoPago) || montoPago <= 0) { mostrarAlerta("Error", "Ingresa un monto válido mayor a cero."); return; }
+            if(montoPago > pendiente) { mostrarAlerta("Error", `El monto máximo a pagar es de $${pendiente.toLocaleString('en-US', {minimumFractionDigits: 2})}`); return; }
+            if(montoPago > misDatos.datos.saldo_disponible) { mostrarAlerta("Fondos insuficientes", "No tienes liquidez suficiente para realizar este pago."); return; }
+
+            // Aplicar
+            misDatos.datos.saldo_disponible -= montoPago;
+            deuda.monto_pagado += montoPago;
+
+            if(deuda.monto_pagado >= deuda.monto_inicial) { deuda.estado = 'pagada'; }
+
+            const hoyIso = new Date().toISOString().split('T')[0];
+            misDatos.datos.transacciones.push({ 
+                fecha: new Date().toLocaleDateString('es-ES'), fechaIso: hoyIso, timestamp: Date.now(), 
+                tipo: 'PagoDeuda', detalle: `Abono a deuda: ${deuda.nombre}`, monto: montoPago, metaId: null 
+            });
+
+            actualizarTodo(); cerrarModal('modal-pago-deuda');
+            if(deuda.estado === 'pagada') { cambiarSubPestanaDeudas('pagadas', document.querySelectorAll('#pestana-deudas .sub-tab-btn')[1]); mostrarAlerta("¡FELICIDADES!", "Has liquidado esta deuda por completo."); }
+        }
+
+        function abrirModalRecurrente() { document.getElementById('rec-nombre').value = ''; document.getElementById('rec-monto').value = ''; document.getElementById('rec-dia').value = ''; document.getElementById('modal-recurrente').style.display = 'flex'; }
+        
+        function guardarRecurrente() {
+            const nom = document.getElementById('rec-nombre').value.trim();
+            const cat = document.getElementById('rec-categoria').value;
+            const monto = parseFloat(document.getElementById('rec-monto').value);
+            const dia = parseInt(document.getElementById('rec-dia').value);
+
+            if(!nom || isNaN(monto) || monto <= 0 || isNaN(dia) || dia < 1 || dia > 31) { mostrarAlerta("Error", "Completa todos los campos correctamente."); return; }
+
+            misDatos.datos.recurrentes.push({ id: crypto.randomUUID(), nombre: nom, categoria: cat, monto: monto, dia: dia, ultimo_mes_pagado: "" });
+            renderizarListaRecurrentes(); guardarEnMemoriaSession(); cerrarModal('modal-recurrente');
+        }
+
+        function renderizarListaRecurrentes() {
+            const lista = document.getElementById('lista-recurrentes'); lista.innerHTML = '';
+            if(!misDatos.datos.recurrentes || misDatos.datos.recurrentes.length === 0) { lista.innerHTML = '<div style="padding: 15px; text-align: center; color: var(--text-muted); font-size:13px;">No hay pagos programados.</div>'; return; }
+            misDatos.datos.recurrentes.forEach((r, i) => {
+                lista.innerHTML += `<div class="rec-item"><div><div class="rec-titulo">${escaparHTML(r.nombre)} - $${r.monto.toLocaleString('en-US', {minimumFractionDigits: 2})}</div><div class="rec-detalle">${r.categoria} | Se cobra el día ${r.dia}</div></div><button class="btn-secondary btn-danger-text" style="padding: 5px 10px;" onclick="eliminarRecurrente(${i})">Borrar</button></div>`;
+            });
+        }
+
+        function eliminarRecurrente(index) { misDatos.datos.recurrentes.splice(index, 1); renderizarListaRecurrentes(); guardarEnMemoriaSession(); }
+
         function abrirModalActivo() { document.getElementById('act-nombre').value = ''; document.getElementById('act-valor').value = ''; document.getElementById('activo-modal').style.display = 'flex'; }
         function guardarActivo() { const nom = document.getElementById('act-nombre').value.trim(); const cat = document.getElementById('act-categoria').value; const val = parseFloat(document.getElementById('act-valor').value); if(!nom || isNaN(val) || val < 0) { mostrarAlerta("Error", "Ingresa un detalle y valor válido."); return; } misDatos.datos.activos.push({ nombre: nom, categoria: cat, valor: val, id: crypto.randomUUID(), fecha: new Date().toLocaleDateString('es-ES') }); actualizarTodo(); cerrarModal('activo-modal'); }
         function renderizarActivosUI() { const cont = document.getElementById('contenedor-activos'); cont.innerHTML = ''; if(misDatos.datos.activos.length === 0) { cont.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No tienes activos registrados.</p>'; return; } misDatos.datos.activos.forEach((a, i) => { cont.innerHTML += `<div class="activo-card fade-in"><span class="activo-cat-badge">${a.categoria}</span><h4 class="activo-titulo">${escaparHTML(a.nombre)}</h4><div class="activo-valor">$${a.valor.toLocaleString('en-US', {minimumFractionDigits: 2})}</div><div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); align-items:center;"><span>Reg: ${a.fecha}</span><button class="btn-secondary btn-danger-text" style="padding: 2px 5px; font-size:10px;" onclick="eliminarActivo(${i})">Eliminar</button></div></div>`; }); }
-        
         function eliminarActivo(index) { solicitarConfirmacion(`¿Deseas eliminar este activo?\nSolo afecta tu cálculo de riqueza real.`, function() { misDatos.datos.activos.splice(index, 1); actualizarTodo(); }); }
 
         function renderizarDatosPerfil() { const p = misDatos.seguridad.perfil; const nombreMostrar = p.nombres || misDatos.seguridad.usuario; document.getElementById('profile-name-display').textContent = nombreMostrar; }
         function abrirModalPerfil() { const p = misDatos.seguridad.perfil; document.getElementById('perfil-usuario-readonly').value = misDatos.seguridad.usuario; document.getElementById('perfil-nombres').value = p.nombres; document.getElementById('perfil-modal').style.display = 'flex'; }
         function guardarPerfil() { misDatos.seguridad.perfil = { nombres: document.getElementById('perfil-nombres').value }; renderizarDatosPerfil(); guardarEnMemoriaSession(); cerrarModal('perfil-modal'); }
 
-        function abrirModalRegistro() { document.getElementById('reg-tipo').value = 'Ingreso'; document.getElementById('reg-subtipo').value = 'General'; document.getElementById('reg-detalle').value = ''; document.getElementById('reg-monto').value = ''; document.getElementById('reg-fecha').value = new Date().toISOString().split('T')[0]; verificarFormularioRegistro(); document.getElementById('registro-modal').style.display = 'flex'; }
+        function abrirModalRegistro() { 
+            document.getElementById('reg-tipo').value = 'Ingreso'; 
+            document.getElementById('reg-subtipo').value = 'General'; 
+            document.getElementById('reg-detalle').value = ''; 
+            document.getElementById('reg-monto').value = ''; 
+            document.getElementById('reg-fecha').value = new Date().toISOString().split('T')[0]; 
+            verificarFormularioRegistro(); 
+            document.getElementById('registro-modal').style.display = 'flex'; 
+        }
         
         function verificarFormularioRegistro() { 
             const tipo = document.getElementById('reg-tipo').value; 
@@ -985,12 +1240,11 @@
             document.getElementById('subtipo-ahorro-container').classList.toggle('hidden', !isAhorro); 
             
             document.getElementById('caja-gasto-hormiga').classList.toggle('hidden', tipo !== 'Egreso');
-            document.getElementById('caja-deuda-pasada').classList.toggle('hidden', tipo !== 'Deuda');
+            document.getElementById('caja-categoria-egreso').classList.toggle('hidden', tipo !== 'Egreso'); // V2.5
+            document.getElementById('caja-deuda-pasada').classList.toggle('hidden', true); // V2.5 Movido a su propio Tab
             document.getElementById('reg-gasto-hormiga').checked = false;
-            document.getElementById('reg-deuda-pasada').checked = false;
 
-            if(tipo === 'Deuda') hint.innerText = "(Ej. Préstamo a Juan, Tarjeta Visa)"; 
-            else if(tipo === 'PagoDeuda') hint.innerText = "(Ej. Abono a Visa, Pago de préstamo)"; 
+            if(tipo === 'PagoDeuda') hint.innerText = "(Ej. Abono a Juan, Tarjeta Visa)"; 
             else hint.innerText = "(Ej. Sueldo, Almuerzo)"; 
             
             if(isAhorro) verificarDestinoAhorro(); 
@@ -1005,7 +1259,7 @@
             const fechaInput = document.getElementById('reg-fecha').value;
             
             const esGastoHormiga = document.getElementById('reg-gasto-hormiga').checked;
-            const esDeudaPasada = document.getElementById('reg-deuda-pasada').checked;
+            const categoriaGasto = document.getElementById('reg-categoria-gasto').value;
 
             if(isNaN(monto) || monto <= 0) { mostrarAlerta("Error", "Ingresa un monto numérico válido mayor a cero."); return; }
             if(!fechaInput) { mostrarAlerta("Error", "Selecciona la fecha de la operación."); return; }
@@ -1016,14 +1270,9 @@
             
             const fechaObj = new Date(fechaInput + "T12:00:00"); let metaId = null;
             
-            if(tipo === 'Deuda' && esDeudaPasada) detalle = "⏳ [Anterior] " + detalle;
-
             if (tipo === 'Ingreso') { misDatos.datos.saldo_disponible += monto; } 
             else if (tipo === 'Egreso') { misDatos.datos.saldo_disponible -= monto; } 
-            else if (tipo === 'Deuda') { 
-                misDatos.datos.deudas_totales += monto; 
-                if(!esDeudaPasada) { misDatos.datos.saldo_disponible += monto; }
-            } 
+            else if (tipo === 'Deuda') { misDatos.datos.deudas_totales += monto; misDatos.datos.saldo_disponible += monto; } 
             else if (tipo === 'PagoDeuda') { misDatos.datos.saldo_disponible -= monto; misDatos.datos.deudas_totales = Math.max(0, misDatos.datos.deudas_totales - monto); } 
             else if (tipo === 'Ahorro') { 
                 const subtipo = document.getElementById('reg-subtipo').value; 
@@ -1038,14 +1287,9 @@
             
             misDatos.datos.transacciones.push({ 
                 fecha: fechaObj.toLocaleDateString('es-ES'), 
-                fechaIso: fechaInput, 
-                timestamp: Date.now(),
-                tipo: tipo, 
-                detalle: detalle, 
-                monto: monto, 
-                metaId: metaId,
+                fechaIso: fechaInput, timestamp: Date.now(), tipo: tipo, detalle: detalle, monto: monto, metaId: metaId,
                 esGastoHormiga: (tipo === 'Egreso' ? esGastoHormiga : false),
-                esDeudaPasada: (tipo === 'Deuda' ? esDeudaPasada : false)
+                categoria: (tipo === 'Egreso' ? categoriaGasto : null)
             });
             
             popularSelectsAvanzados(); actualizarTodo(); cerrarModal('registro-modal');
@@ -1070,9 +1314,7 @@
 
             popularSelectsAvanzados(); actualizarTodo(); cerrarModal('meta-modal'); 
         }
-        function renderizarMetasUI() { const contActivas = document.getElementById('contenedor-metas-activas'); const contArchivadas = document.getElementById('contenedor-metas-archivadas'); contActivas.innerHTML = ''; contArchivadas.innerHTML = ''; let hayActivas = false, hayArchivadas = false; misDatos.datos.metas.forEach((m, i) => { if(m.estado === 'eliminada') return; const porcentaje = Math.min((m.ahorrado / m.costo) * 100, 100); const esCumplida = porcentaje >= 100; const esArchivada = m.estado === 'archivada'; const badge = esArchivada ? '<div class="badge-archivada">ARCHIVADA</div>' : (esCumplida ? '<div class="badge-cumplida">¡META CUMPLIDA!</div>' : ''); const html = `<div class="meta-card-compact ${esCumplida ? 'cumplida' : ''} ${esArchivada ? 'archivada' : ''}" onclick="abrirDetalleMeta(${i})">${badge}<div class="meta-img-box"><img src="icon-192.png" alt="Meta"></div><div class="meta-info"><div class="meta-title" title="${escaparHTML(m.nombre)}">${escaparHTML(m.nombre)}</div><div class="barra-progreso-mini"><div class="progreso-fill-mini" style="width: ${porcentaje}%;"></div></div><div style="font-size:11px; color:var(--text-muted); display:flex; justify-content:space-between;"><span>$${m.ahorrado.toLocaleString('en-US')}</span><span style="font-weight:bold;">${porcentaje.toFixed(0)}%</span></div></div></div>`; if(esArchivada) { contArchivadas.innerHTML += html; hayArchivadas = true; } else { contActivas.innerHTML += html; hayActivas = true; } }); if(!hayActivas) contActivas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">No tienes objetivos activos.</p>'; if(!hayArchivadas) contArchivadas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">Aún no tienes objetivos archivados.</p>'; }
-        function abrirDetalleMeta(index) { indiceMetaActualVista = index; const m = misDatos.datos.metas[index]; const porcentaje = Math.min((m.ahorrado / m.costo) * 100, 100); document.getElementById('md-info-principal').classList.remove('hidden'); document.getElementById('md-historial-seccion').classList.add('hidden'); document.getElementById('md-titulo').innerText = m.nombre; document.getElementById('md-fecha-creacion').innerText = "Creado el: " + (m.fechaCreacion || 'Desconocida'); document.getElementById('md-desc').innerText = m.descripcion || "Sin descripción."; document.getElementById('md-ahorrado').innerText = "$" + m.ahorrado.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-costo').innerText = "$" + m.costo.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-barra').style.width = porcentaje + "%"; const badge = document.getElementById('md-badge'); const btnArchivar = document.getElementById('btn-archivar-meta'); badge.classList.add('hidden'); btnArchivar.classList.add('hidden'); if (m.estado === 'archivada') { document.getElementById('md-porcentaje').innerText = "META ARCHIVADA EN HISTORIAL"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--text-muted)"; } else if (porcentaje >= 100) { document.getElementById('md-porcentaje').innerText = "100% - ¡OBJETIVO CUMPLIDO!"; document.getElementById('md-porcentaje').style.color = "var(--ingreso)"; document.getElementById('md-barra').style.background = "var(--ingreso)"; badge.classList.remove('hidden'); btnArchivar.classList.remove('hidden'); } else { document.getElementById('md-porcentaje').innerText = porcentaje.toFixed(1) + "% COMPLETADO"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--primary)"; } document.getElementById('meta-detalle-modal').style.display = 'flex'; }
-        
+
         function archivarMetaActual() { 
             const m = misDatos.datos.metas[indiceMetaActualVista];
             solicitarConfirmacion(
@@ -1082,23 +1324,21 @@
                     misDatos.datos.activos.push({ nombre: m.nombre, categoria: 'Otro', valor: m.ahorrado, id: crypto.randomUUID(), fecha: new Date().toLocaleDateString('es-ES') }); 
                     misDatos.datos.ahorros_totales -= m.ahorrado;
                     misDatos.datos.transacciones.push({ fecha: new Date().toLocaleDateString('es-ES'), fechaIso: new Date().toISOString().split('T')[0], timestamp: Date.now(), tipo: 'UsoAhorro', detalle: `Compra de activo (meta): ${m.nombre}`, monto: m.ahorrado, metaId: null });
-                    actualizarTodo(); cerrarModal('meta-detalle-modal'); cambiarSubPestanaMetas('archivadas', document.querySelectorAll('.sub-tab-btn')[1]);
+                    actualizarTodo(); cerrarModal('meta-detalle-modal'); cambiarSubPestanaMetas('archivadas', document.querySelectorAll('#metas .sub-tab-btn')[1]);
                     mostrarAlerta("Activo registrado", "El dinero salió de tus ahorros y el bien se añadió a tus activos fijos."); 
                 }, 
                 "Activo fijo", "Gasto consumible", false,
                 function() {
                     solicitarConfirmacion(
-                        "¿Confirmas registrarlo como gasto consumible?\nEsto se reflejará permanentemente en tu gráfica de egresos.", 
+                        "¿Confirmas registrarlo como gasto consumible?\nEsto se reflejará en tus egresos bajo la categoría 'Otros Gastos'.", 
                         function(){
                             m.estado = 'archivada';
                             misDatos.datos.ahorros_totales -= m.ahorrado;
-                            misDatos.datos.transacciones.push({ fecha: new Date().toLocaleDateString('es-ES'), fechaIso: new Date().toISOString().split('T')[0], timestamp: Date.now(), tipo: 'Egreso', detalle: `Liquidación de meta: ${m.nombre}`, monto: m.ahorrado, metaId: null });
-                            actualizarTodo(); cerrarModal('meta-detalle-modal'); cambiarSubPestanaMetas('archivadas', document.querySelectorAll('.sub-tab-btn')[1]);
+                            misDatos.datos.transacciones.push({ fecha: new Date().toLocaleDateString('es-ES'), fechaIso: new Date().toISOString().split('T')[0], timestamp: Date.now(), tipo: 'Egreso', detalle: `Liquidación de meta: ${m.nombre}`, monto: m.ahorrado, metaId: null, categoria: 'Otros Gastos' });
+                            actualizarTodo(); cerrarModal('meta-detalle-modal'); cambiarSubPestanaMetas('archivadas', document.querySelectorAll('#metas .sub-tab-btn')[1]);
                             mostrarAlerta("Gasto registrado", "El dinero salió de tus ahorros y se registró como un egreso completado."); 
                         }, "Sí, registrar gasto", "Atrás", true,
-                        function() {
-                            archivarMetaActual();
-                        }
+                        function() { archivarMetaActual(); }
                     );
                 }
             ); 
@@ -1158,7 +1398,7 @@
                 if(tx.tipo === 'Ahorro' && tx.metaId != null) { nombreTipo = 'Ahorro a meta'; }
                 else if(tx.tipo === 'Deuda') { nombreTipo = tx.esDeudaPasada ? 'Anterior' : 'Nueva'; }
                 else if(tx.tipo === 'PagoDeuda') { nombreTipo = 'Pago deuda'; }
-                else if(tx.tipo === 'Egreso' && tx.esGastoHormiga) { nombreTipo = 'Gasto H'; }
+                else if(tx.tipo === 'Egreso') { nombreTipo = tx.esGastoHormiga ? 'Gasto H' : (tx.categoria || 'Egreso'); }
 
                 if(tx.tipo === 'Ahorro') color = 'var(--primary)'; 
                 if(tx.tipo === 'Reverso') color = 'var(--ingreso)'; 
@@ -1170,9 +1410,7 @@
         function limpiarFiltrosAvanzados() { document.getElementById('filtro-inicio').value = ''; document.getElementById('filtro-fin').value = ''; document.getElementById('filtro-tipo').value = 'Todos'; document.getElementById('filtro-ahorro-select').value = 'Todos'; document.getElementById('filtro-deuda-select').value = 'Todas'; verificarSubfiltrosMovimientos(); aplicarFiltrosAvanzados(); }
         
         function descargarRespaldo() { misDatos.seguridad.ultima_sesion = new Date().toISOString(); const fecha = new Date().toISOString().split('T')[0]; const blob = new Blob([JSON.stringify(misDatos, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `Boveda_${misDatos.seguridad.usuario}_${fecha}.json`; a.click(); document.getElementById('last-session-trigger').textContent = "Última sesión: " + formatearFechaElegante(misDatos.seguridad.ultima_sesion); }
-        
         function exportarCSV() { const fechaHoy = new Date().toLocaleDateString('es-ES'); let csv = `"HISTORIAL FINANCIERO - Generado el ${fechaHoy}"\n`; csv += "Fecha,Tipo de movimiento,Detalle / Descripción,Monto ($), Saldo post-movimiento ($)\n"; misDatos.datos.transacciones.forEach(tx => { csv += `"${tx.fecha}","${tx.tipo}","${escaparHTML(tx.detalle).replace(/"/g, '""')}","${tx.monto.toFixed(2)}","${(tx.saldo_historico || 0).toFixed(2)}"\n`; }); const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `Historial_Financiero_${new Date().toISOString().split('T')[0]}.csv`; a.click(); }
-        
         if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').then(reg => console.log('SW registrado')).catch(err => console.log('Error SW')); }); }
     </script>
 </body>
