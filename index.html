@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es" class="dark-mode">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>C.O.R.E by JOEL</title>
     
+    <!-- CONEXIÓN PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#18191a">
     <link rel="apple-touch-icon" href="icon-192.png">
@@ -33,7 +35,6 @@
         select { background-color: var(--bg-card) !important; color: var(--text-main) !important; }
         select option { background-color: var(--bg-card); color: var(--text-main); padding: 10px; }
 
-        /* TEXTAREA FIJO AUTOMÁTICO (SIN BARRAS FEAS) */
         textarea { min-height: 80px; max-height: 150px; resize: none; overflow-y: auto; }
         input[type="date"] { padding: 8px 12px; }
 
@@ -58,7 +59,6 @@
 
         .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); }
         
-        /* CENTRADO DE BOTONES EN CONFIRMACIÓN */
         #confirm-modal .modal-footer { justify-content: center !important; }
 
         .grid-2-cols { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; }
@@ -162,7 +162,6 @@
         .meta-card-compact.cumplida { border-color: var(--gold); }
         .meta-card-compact.archivada { filter: grayscale(0.8); opacity: 0.8; border-color: var(--border) !important; }
         
-        /* CENTRADO DE BADGE META CUMPLIDA */
         .badge-cumplida { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #333; font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 10px; z-index: 2; white-space: nowrap; }
         .badge-archivada { position: absolute; top: 10px; right: 10px; background: var(--text-muted); color: white; font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 10px; z-index: 2; }
 
@@ -209,7 +208,13 @@
         @media (max-width: 768px) {
             #app-container { padding: 0 15px 30px 15px; margin-top: 15px; }
             .app-header-premium { flex-direction: column; align-items: stretch; gap: 20px; padding: 20px; }
-            .header-brand { justify-content: center; text-align: center; flex-direction: column; gap: 10px;}
+            
+            .header-brand { justify-content: center; text-align: center; flex-direction: column; gap: 10px; align-items: center !important; }
+            .brand-text-container { align-items: center !important; text-align: center !important; width: 100%; }
+            
+            /* CORRECCIÓN DE ESPACIADO EN CAMPOS APILADOS MÓVIL */
+            .grid-2-cols > div:nth-child(2) { margin-top: 15px !important; }
+
             .header-actions { width: 100%; display: flex; gap: 10px; }
             .btn-header { flex: 1; padding: 10px 0; font-size: 13px; }
             .login-card { padding: 30px 20px; }
@@ -232,7 +237,7 @@
             .movimientos-actions-top { justify-content: center; }
             .movimientos-actions-top button { width: 100%; }
             .config-profile-header { flex-direction: column; gap: 20px; text-align: center; }
-            .config-profile-header > div:first-child { flex-direction: column; }
+            .config-profile-header > div:first-child { flex-direction: column; align-items: center !important; text-align: center !important; }
             .profile-avatar { margin-right: 0; margin-bottom: 10px; }
             .config-profile-header > div:last-child { width: 100%; display: flex; justify-content: center;}
             .btn-edit-profile { flex: 1; justify-content: center; }
@@ -241,7 +246,7 @@
             .leyenda-grafico { grid-template-columns: 1fr; }
             .modal-footer { flex-direction: column; align-items: stretch; }
             .modal-footer button { width: 100%; }
-            #confirm-modal .modal-footer { flex-direction: row; }
+            #confirm-modal .modal-footer { flex-direction: row; justify-content: center !important; }
         }
     </style>
 </head>
@@ -464,7 +469,6 @@
             
             <div class="config-item" style="border-left: 4px solid var(--text-muted);">
                 <div>
-                    <!-- TEXTO BLANCO PURO SOLICITADO -->
                     <span style="color: #ffffff; font-size: 14px;">Guarda un respaldo de tus datos y sal de la bóveda.</span>
                 </div>
                 <button class="btn-secondary" onclick="cerrarSesionApp()">Cerrar sesión</button>
@@ -607,8 +611,8 @@
             <div style="text-align: center; margin-bottom: 15px;">
                 <div class="profile-avatar" style="width: 80px; height: 80px; margin: 0 auto 10px auto;"><img src="icon-192.png" alt="Perfil"></div>
             </div>
-            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombres:</label>
-            <input type="text" id="perfil-nombres" placeholder=" ">
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombres completos:</label>
+            <input type="text" id="perfil-nombres" placeholder="Nombres">
             <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Usuario de acceso:</label>
             <input type="text" id="perfil-usuario-readonly" disabled style="background: rgba(255,255,255,0.05);">
             <div class="modal-footer"><button onclick="cerrarModal('perfil-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarPerfil()">Guardar</button></div>
@@ -819,7 +823,7 @@
             let titulo = "", datos = [], colorTitulo = "var(--text-main)";
             if (filtro === 'saldo') { titulo = "Liquidez: Actividad de hoy"; colorTitulo = "var(--ingreso)"; datos = misDatos.datos.transacciones.filter(tx => tx.fechaIso === hoyIso && (tx.tipo === 'Ingreso' || tx.tipo === 'Egreso' || tx.tipo === 'Ahorro' || tx.tipo === 'Reverso' || tx.tipo === 'Deuda' || tx.tipo === 'PagoDeuda')); } 
             else if (filtro === 'egresos') { titulo = "Egresos: Actividad de hoy"; colorTitulo = "var(--egreso)"; datos = misDatos.datos.transacciones.filter(tx => tx.fechaIso === hoyIso && tx.tipo === 'Egreso'); } 
-            else if (filtro === 'ahorros') { titulo = "Ahorros: Actividad de hoy"; colorTitulo = "var(--primary)"; datos = misDatos.datos.transacciones.filter(tx => tx.fechaIso === hoyIso && tx.tipo === 'Ahorro').map(tx => ({...tx, tipoVisual: 'Ahorro'})); } 
+            else if (filtro === 'ahorros') { titulo = "Ahorros: Actividad de hoy"; colorTitulo = "var(--primary)"; datos = misDatos.datos.transacciones.filter(tx => tx.fechaIso === hoyIso && tx.tipo === 'Ahorro').map(tx => ({...tx, tipoVisual: 'Ahorro (+)'})); } 
             else if (filtro === 'deudas') { titulo = "Deudas: Actividad de hoy"; colorTitulo = "var(--deuda)"; datos = misDatos.datos.transacciones.filter(tx => tx.fechaIso === hoyIso && (tx.tipo === 'Deuda' || tx.tipo === 'PagoDeuda')); }
             
             tituloInline.innerText = titulo; tituloInline.style.color = colorTitulo;
@@ -1012,7 +1016,7 @@
             
             const fechaObj = new Date(fechaInput + "T12:00:00"); let metaId = null;
             
-            if(tipo === 'Deuda' && esDeudaPasada) detalle = "⏳" + detalle;
+            if(tipo === 'Deuda' && esDeudaPasada) detalle = "⏳ [Anterior] " + detalle;
 
             if (tipo === 'Ingreso') { misDatos.datos.saldo_disponible += monto; } 
             else if (tipo === 'Egreso') { misDatos.datos.saldo_disponible -= monto; } 
