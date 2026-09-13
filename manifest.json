@@ -1,0 +1,21 @@
+{
+  "name": "C.O.R.E. by TOHKA",
+  "short_name": "C.O.R.E.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#18191a",
+  "theme_color": "#1877f2",
+  "description": "Control Operativo de Recursos Económicos",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
