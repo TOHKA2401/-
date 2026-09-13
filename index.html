@@ -10,12 +10,10 @@
     <meta name="theme-color" content="#18191a">
     <link rel="apple-touch-icon" href="icon-192.png">
 
-    <!-- LIBRERÍA DE GRÁFICOS INTERACTIVOS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         :root {
-            /* MODO OSCURO PERMANENTE */
             --bg-body: #18191a; --bg-card: #242526; --text-main: #e4e6eb; --text-muted: #b0b3b8;
             --primary: #0099a8; --ingreso: #36a420; --egreso: #d32f2f; --deuda: #f57c00; --gold: #ffd700;
             --excel: #107c41; --purple: #9b7bb3; --activo: #17a2b8; --danger: #dc3545;
@@ -74,7 +72,6 @@
         .brand-icon-box img { width: 100%; height: 100%; object-fit: contain; }
         .brand-icon-box:hover { transform: scale(1.05); }
         
-        /* CORRECCIÓN DE ALINEACIÓN Y SEPARACIÓN DEL 15% */
         .brand-text-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
         .brand-text-container h2 { margin: 0; font-size: 1.6em; color: var(--text-main); letter-spacing: 1px; line-height: 1; }
         .brand-subtitle { font-size: 10px; color: var(--primary); font-weight: 800; letter-spacing: 1.5px; line-height: 1; margin: 0; }
@@ -267,7 +264,7 @@
         <div class="login-card">
             <h2 style="color: var(--primary); margin-bottom: 10px;">Bienvenido</h2>
             <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Accede a tu bóveda financiera personal</p>
-            <input type="text" value="Servidor: SERVTOHKABD4" disabled style="opacity: 0.7; background: rgba(255,255,255,0.05); font-weight: bold; text-align: center;">
+            <input type="text" value="Servidor: SERVTHKBD4" disabled style="opacity: 0.7; background: rgba(255,255,255,0.05); font-weight: bold; text-align: center;">
             <input type="text" id="login-user" placeholder="Usuario" onkeypress="if(event.key === 'Enter') iniciarSesion()">
             
             <div style="position: relative; margin-bottom: 15px;">
@@ -283,9 +280,9 @@
                 <span id="login-file-name" class="file-name-display">Ningún archivo...</span>
                 <input type="file" id="login-file" accept=".json" onchange="actualizarNombreArchivo(this, 'login-file-name')">
             </div>
-            <button onclick="iniciarSesion()" style="width: 100%; margin-bottom: 15px;">Iniciar carga</button>
+            <button onclick="iniciarSesion()" style="width: 100%; margin-bottom: 15px;">Ingresar a la Banca personal</button>
             <div style="border-top: 1px solid var(--border); padding-top: 15px;">
-                <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">¿Eres un usuario nuevo?</span>
+                <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">¿Eres usuario nuevo?</span>
                 <button onclick="abrirModalCrearBoveda()" class="btn-secondary" style="width: 100%;">Generar cuenta</button>
             </div>
         </div>
@@ -298,10 +295,9 @@
                 <div class="brand-icon-box" onclick="toggleTohkaModal(true)">
                     <img src="icon-192.png" alt="Logo">
                 </div>
-                <!-- TEXTO CORREGIDO Y ALINEADO CON 15% MÁS DE SEPARACIÓN -->
                 <div class="brand-text-container">
                     <h2>C.O.R.E.</h2>
-                    <div class="brand-subtitle">BY TOHKA</div>
+                    <div class="brand-subtitle">BY JOEL</div>
                     <div id="last-session-trigger" class="session-trigger" onclick="toggleSessionHistory()"></div>
                     <div id="session-history-container" class="hidden fade-in"></div>
                 </div>
@@ -392,8 +388,7 @@
         <div id="pestana-activos" class="tab-content fade-in">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
                 <div>
-                    <h3 style="margin: 0 0 5px 0; color: var(--text-main); font-size: 1.5em;">Mis activos fijos</h3>
-                    <p style="margin:0; font-size: 13px; color: var(--text-muted);">Registra tus bienes de valor (Vehículos, Inmuebles, Tecnología) para calcular tu riqueza real.</p>
+                    <p style="margin:0; font-size: 13px; color: var(--text-muted);">Registra tus bienes de valor (Vehículos, Inmuebles, Tecnología)</p>
                 </div>
                 <button onclick="abrirModalActivo()" style="background: var(--activo);">+ Registrar</button>
             </div>
@@ -431,11 +426,11 @@
                 <div>
                     <h3 style="margin: 0 0 15px 0; color: var(--text-main); font-size: 1.5em;">Gestión de objetivos</h3>
                     <div class="sub-tabs-container">
-                        <button class="sub-tab-btn active" onclick="cambiarSubPestanaMetas('activas', this)">Metas activas</button>
-                        <button class="sub-tab-btn" onclick="cambiarSubPestanaMetas('archivadas', this)">Historial de cumplidos</button>
+                        <button class="sub-tab-btn active" onclick="cambiarSubPestanaMetas('activas', this)">Activas</button>
+                        <button class="sub-tab-btn" onclick="cambiarSubPestanaMetas('archivadas', this)">Historial</button>
                     </div>
                 </div>
-                <button onclick="abrirModalMeta()">+ Nueva meta</button>
+                <button onclick="abrirModalMeta()">+ Registrar</button>
             </div>
 
             <div class="metas-grid-compact fade-in" id="contenedor-metas-activas"></div>
@@ -456,7 +451,6 @@
             <!-- Botón Cerrar Sesión -->
             <div class="config-item" style="border-left: 4px solid var(--text-muted);">
                 <div>
-                    <h3 style="margin-bottom: 5px; color: var(--text-main);">Cerrar sesión</h3>
                     <span style="color: var(--text-muted); font-size: 14px;">Guarda un respaldo de tus datos y sal de la bóveda.</span>
                 </div>
                 <button class="btn-secondary" onclick="cerrarSesionApp()">Cerrar sesión</button>
@@ -471,11 +465,11 @@
         <h3>Registrar movimiento</h3>
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Tipo de transacción:</label>
         <select id="reg-tipo" onchange="verificarFormularioRegistro()" style="margin-bottom: 10px;">
-            <option value="Ingreso">Ingreso (+)</option>
-            <option value="Egreso">Gasto / egreso (-)</option>
-            <option value="Ahorro">Ahorro (+)</option>
-            <option value="Deuda">Préstamo (+)</option>
-            <option value="PagoDeuda">Pago de deuda (-)</option>
+            <option value="Ingreso">Ingreso</option>
+            <option value="Egreso">Gasto</option>
+            <option value="Ahorro">Ahorro</option>
+            <option value="Deuda">Préstamo</option>
+            <option value="PagoDeuda">Pago de deuda</option>
         </select>
         
         <!-- Switch para Gasto Hormiga -->
@@ -526,19 +520,19 @@
     
     <div id="activo-modal" class="modal-overlay"><div class="modal-card modal-md">
         <h3 style="color: var(--activo);">Registrar bien / activo</h3>
-        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombre del bien:</label>
+        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Detalle:</label>
         <input type="text" id="act-nombre" placeholder="Ej. Automóvil Toyota Yaris">
         
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Categoría:</label>
         <select id="act-categoria">
             <option value="Vehículo">Vehículo</option>
-            <option value="Inmueble">Inmueble / Terreno</option>
-            <option value="Tecnología">Tecnología (PC, Móvil)</option>
-            <option value="Inversión">Inversión (Acciones, Oro)</option>
+            <option value="Inmueble">Inmueble</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Inversión">Inversión</option>
             <option value="Otro">Otro</option>
         </select>
 
-        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Valor de mercado actual ($):</label>
+        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Valor ($):</label>
         <input type="number" inputmode="decimal" id="act-valor" placeholder="0.00" step="0.01" min="0" onkeypress="if(event.key === 'Enter') guardarActivo()">
         
         <div class="modal-footer"><button onclick="cerrarModal('activo-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarActivo()" style="background: var(--activo);">Registrar activo</button></div>
@@ -546,18 +540,18 @@
 
     <div id="meta-modal" class="modal-overlay">
         <div class="modal-card modal-md">
-            <h3>Crear nuevo objetivo</h3>
-            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombre del objetivo:</label>
+            <h3>Formulario</h3>
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Detalle:</label>
             <input type="text" id="meta-nombre" placeholder="Ej. Laptop">
             
             <div class="grid-2-cols">
-                <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Costo total ($):</label><input type="number" inputmode="decimal" id="meta-costo" placeholder="0.00" step="0.01" min="0"></div>
+                <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Costo ($):</label><input type="number" inputmode="decimal" id="meta-costo" placeholder="0.00" step="0.01" min="0"></div>
                 <div><label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Ahorro inicial ($):</label><input type="number" inputmode="decimal" id="meta-ahorrado" placeholder="0.00" step="0.01" min="0"></div>
             </div>
             <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Descripción (opcional):</label>
             <textarea id="meta-descripcion" placeholder="Detalles del producto..."></textarea>
             
-            <div class="modal-footer"><button onclick="cerrarModal('meta-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarMeta()">Crear meta</button></div>
+            <div class="modal-footer"><button onclick="cerrarModal('meta-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarMeta()">Crear</button></div>
         </div>
     </div>
     
@@ -565,7 +559,7 @@
         <div class="modal-card modal-xl meta-detail-layout">
             <div class="meta-detail-img">
                 <img src="icon-192.png" alt="Meta Logo">
-                <div id="md-badge" class="badge-cumplida hidden" style="position: absolute; top: 15px; left: 15px; font-size: 12px; padding: 6px 12px;">¡LISTA PARA COMPRAR!</div>
+                <div id="md-badge" class="badge-cumplida hidden" style="position: absolute; top: 15px; left: 15px; font-size: 12px; padding: 6px 12px;">¡META CUMPLICA!</div>
             </div>
             <div class="meta-detail-info">
                 <div id="md-info-principal">
@@ -579,7 +573,7 @@
                     </div>
                     <div class="barra-progreso-mini" style="height: 12px; margin-bottom: 5px;"><div id="md-barra" class="progreso-fill-mini"></div></div>
                     <div style="text-align: right; font-size: 12px; font-weight: bold; color: var(--text-muted); margin-bottom: 20px;" id="md-porcentaje">0%</div>
-                    <button id="btn-archivar-meta" class="hidden" style="width: 100%; background: var(--gold); color: #333;" onclick="archivarMetaActual()">¡Meta cumplida! Archivar</button>
+                    <button id="btn-archivar-meta" class="hidden" style="width: 100%; background: var(--gold); color: #333;" onclick="archivarMetaActual()">Archivar</button>
                 </div>
                 <div id="md-historial-seccion" class="hidden" style="flex: 1; display: flex; flex-direction: column;">
                     <h4 style="margin-bottom: 10px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 5px;">Historial de depósitos<span class="link-historial" style="float: right; font-weight: normal;" onclick="toggleHistorialMeta()">Volver a info</span></h4>
@@ -595,15 +589,15 @@
     
     <div id="perfil-modal" class="modal-overlay">
         <div class="modal-card modal-sm">
-            <h3>Editar perfil de usuario</h3>
+            <h3>Perfil de usuario</h3>
             <div style="text-align: center; margin-bottom: 15px;">
                 <div class="profile-avatar" style="width: 80px; height: 80px; margin: 0 auto 10px auto;"><img src="icon-192.png" alt="Perfil"></div>
             </div>
             <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombres completos:</label>
-            <input type="text" id="perfil-nombres" placeholder="Tu nombre real">
-            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Usuario de acceso (solo lectura):</label>
+            <input type="text" id="perfil-nombres" placeholder="Nombres">
+            <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Usuario de acceso:</label>
             <input type="text" id="perfil-usuario-readonly" disabled style="background: rgba(255,255,255,0.05);">
-            <div class="modal-footer"><button onclick="cerrarModal('perfil-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarPerfil()">Guardar cambios</button></div>
+            <div class="modal-footer"><button onclick="cerrarModal('perfil-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarPerfil()">Guardar</button></div>
         </div>
     </div>
 
@@ -611,7 +605,6 @@
         let misDatos = null; let tarjetaActiva = null; let indiceMetaActualVista = null; let graficoCircular = null;
         let accionConfirmadaPendiente = null; let accionCancelarPendiente = null;
 
-        // Auto-Carga Invisible
         document.addEventListener("DOMContentLoaded", () => {
             const dataGuardada = localStorage.getItem('tohka_boveda_data');
             if(dataGuardada) {
@@ -750,7 +743,7 @@
 
         function cerrarSesionApp() {
             solicitarConfirmacion(
-                "¿Deseas cerrar sesión?\n\nSe descargará automáticamente un respaldo actualizado de tu bóveda para que puedas cargarla la próxima vez sin perder ningún dato.",
+                "¿Deseas cerrar sesión?\n\nSe descargará automáticamente un respaldo actualizado",
                 function() {
                     descargarRespaldo();
                     localStorage.removeItem('tohka_boveda_data');
@@ -801,10 +794,10 @@
             
             tituloInline.innerText = titulo; tituloInline.style.color = colorTitulo;
             const tbody = document.getElementById('tabla-detalle-inline'); tbody.innerHTML = '';
-            if(datos.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 20px;">No hay actividad registrada el día de hoy para esta categoría.</td></tr>'; } 
+            if(datos.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 20px;">No hay actividad registrada el día de hoy.</td></tr>'; } 
             else { datos.slice().reverse().forEach(tx => { 
                 let color = tx.tipo === 'Egreso' || tx.tipo === 'PagoDeuda' ? 'var(--egreso)' : (tx.tipo === 'Deuda' ? 'var(--deuda)' : 'var(--ingreso)'); 
-                if(tx.tipoVisual === 'Ahorro (+)' || tx.esMeta || tx.tipo === 'Ahorro') color = 'var(--primary)'; 
+                if(tx.tipoVisual === 'Ahorro' || tx.esMeta || tx.tipo === 'Ahorro') color = 'var(--primary)'; 
                 if(tx.tipo === 'Reverso') color = 'var(--ingreso)';
                 let nTipo = tx.tipo === 'Deuda' ? 'Nueva deuda' : (tx.tipo === 'PagoDeuda' ? 'Pago deuda' : tx.tipo);
                 tbody.innerHTML += `<tr><td>${tx.fecha}</td><td class="col-detalle">${escaparHTML(tx.detalle)}</td><td style="color: ${color}; font-weight: 600;">${tx.tipoVisual || nTipo}</td><td class="fin-align" style="font-weight: 600;">${fmtDinero(tx.monto)}</td><td class="fin-align" style="color: var(--text-muted); font-weight:600;">${fmtDinero(tx.saldo_historico || 0)}</td></tr>`; 
@@ -936,7 +929,7 @@
         function guardarActivo() { const nom = document.getElementById('act-nombre').value.trim(); const cat = document.getElementById('act-categoria').value; const val = parseFloat(document.getElementById('act-valor').value); if(!nom || isNaN(val) || val < 0) { mostrarAlerta("Error", "Ingresa un nombre y valor válido."); return; } misDatos.datos.activos.push({ nombre: nom, categoria: cat, valor: val, id: crypto.randomUUID(), fecha: new Date().toLocaleDateString('es-ES') }); actualizarTodo(); cerrarModal('activo-modal'); }
         function renderizarActivosUI() { const cont = document.getElementById('contenedor-activos'); cont.innerHTML = ''; if(misDatos.datos.activos.length === 0) { cont.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No tienes activos registrados.</p>'; return; } misDatos.datos.activos.forEach((a, i) => { cont.innerHTML += `<div class="activo-card fade-in"><span class="activo-cat-badge">${a.categoria}</span><h4 class="activo-titulo">${escaparHTML(a.nombre)}</h4><div class="activo-valor">$${a.valor.toLocaleString('en-US', {minimumFractionDigits: 2})}</div><div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); align-items:center;"><span>Reg: ${a.fecha}</span><button class="btn-secondary btn-danger-text" style="padding: 2px 5px; font-size:10px;" onclick="eliminarActivo(${i})">Eliminar</button></div></div>`; }); }
         
-        function eliminarActivo(index) { solicitarConfirmacion(`¿Deseas eliminar este activo?\n(Esta acción no afecta tu saldo líquido, solo tu cálculo de riqueza real).`, function() { misDatos.datos.activos.splice(index, 1); actualizarTodo(); }); }
+        function eliminarActivo(index) { solicitarConfirmacion(`¿Deseas eliminar este activo?\nSolo afecta tu cálculo de riqueza real.`, function() { misDatos.datos.activos.splice(index, 1); actualizarTodo(); }); }
 
         function renderizarDatosPerfil() { const p = misDatos.seguridad.perfil; const nombreMostrar = p.nombres || misDatos.seguridad.usuario; document.getElementById('profile-name-display').textContent = nombreMostrar; }
         function abrirModalPerfil() { const p = misDatos.seguridad.perfil; document.getElementById('perfil-usuario-readonly').value = misDatos.seguridad.usuario; document.getElementById('perfil-nombres').value = p.nombres; document.getElementById('perfil-modal').style.display = 'flex'; }
@@ -984,7 +977,7 @@
             
             const fechaObj = new Date(fechaInput + "T12:00:00"); let metaId = null;
             
-            if(tipo === 'Egreso' && esGastoHormiga) detalle = "🐜 " + detalle;
+            if(tipo === 'Egreso' && esGastoHormiga) detalle = detalle;
             if(tipo === 'Deuda' && esDeudaPasada) detalle = "⏳ [Anterior] " + detalle;
 
             if (tipo === 'Ingreso') { misDatos.datos.saldo_disponible += monto; } 
@@ -1025,7 +1018,7 @@
             const nom = document.getElementById('meta-nombre').value; const cos = parseFloat(document.getElementById('meta-costo').value); const aho = parseFloat(document.getElementById('meta-ahorrado').value) || 0; const desc = document.getElementById('meta-descripcion').value; 
             if(!nom || isNaN(cos) || cos<=0) { mostrarAlerta("Error", "Ingresa un nombre y un costo total válido."); return; } 
             if(aho > cos) { mostrarAlerta("Error", "El ahorro inicial no puede ser mayor al costo de la meta."); return; }
-            if(aho > 0 && aho > misDatos.datos.saldo_disponible) { mostrarAlerta("Fondos insuficientes", "No tienes suficiente liquidez total para este ahorro inicial."); return; }
+            if(aho > 0 && aho > misDatos.datos.saldo_disponible) { mostrarAlerta("Fondos insuficientes", "No tienes suficiente liquidez para este ahorro inicial."); return; }
             
             misDatos.datos.metas.push({ nombre: nom, costo: cos, ahorrado: aho, descripcion: desc, estado: 'activa', id: crypto.randomUUID(), fechaCreacion: new Date().toLocaleDateString('es-ES') }); 
             const metaId = misDatos.datos.metas.length - 1;
@@ -1040,12 +1033,12 @@
             popularSelectsAvanzados(); actualizarTodo(); cerrarModal('meta-modal'); 
         }
         function renderizarMetasUI() { const contActivas = document.getElementById('contenedor-metas-activas'); const contArchivadas = document.getElementById('contenedor-metas-archivadas'); contActivas.innerHTML = ''; contArchivadas.innerHTML = ''; let hayActivas = false, hayArchivadas = false; misDatos.datos.metas.forEach((m, i) => { if(m.estado === 'eliminada') return; const porcentaje = Math.min((m.ahorrado / m.costo) * 100, 100); const esCumplida = porcentaje >= 100; const esArchivada = m.estado === 'archivada'; const badge = esArchivada ? '<div class="badge-archivada">ARCHIVADA</div>' : (esCumplida ? '<div class="badge-cumplida">¡LISTA!</div>' : ''); const html = `<div class="meta-card-compact ${esCumplida ? 'cumplida' : ''} ${esArchivada ? 'archivada' : ''}" onclick="abrirDetalleMeta(${i})">${badge}<div class="meta-img-box"><img src="icon-192.png" alt="Meta"></div><div class="meta-info"><div class="meta-title" title="${escaparHTML(m.nombre)}">${escaparHTML(m.nombre)}</div><div class="barra-progreso-mini"><div class="progreso-fill-mini" style="width: ${porcentaje}%;"></div></div><div style="font-size:11px; color:var(--text-muted); display:flex; justify-content:space-between;"><span>$${m.ahorrado.toLocaleString('en-US')}</span><span style="font-weight:bold;">${porcentaje.toFixed(0)}%</span></div></div></div>`; if(esArchivada) { contArchivadas.innerHTML += html; hayArchivadas = true; } else { contActivas.innerHTML += html; hayActivas = true; } }); if(!hayActivas) contActivas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">No tienes objetivos activos.</p>'; if(!hayArchivadas) contArchivadas.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top:20px;">Aún no tienes objetivos archivados.</p>'; }
-        function abrirDetalleMeta(index) { indiceMetaActualVista = index; const m = misDatos.datos.metas[index]; const porcentaje = Math.min((m.ahorrado / m.costo) * 100, 100); document.getElementById('md-info-principal').classList.remove('hidden'); document.getElementById('md-historial-seccion').classList.add('hidden'); document.getElementById('md-titulo').innerText = m.nombre; document.getElementById('md-fecha-creacion').innerText = "Creado el: " + (m.fechaCreacion || 'Desconocida'); document.getElementById('md-desc').innerText = m.descripcion || "Sin descripción proporcionada."; document.getElementById('md-ahorrado').innerText = "$" + m.ahorrado.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-costo').innerText = "$" + m.costo.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-barra').style.width = porcentaje + "%"; const badge = document.getElementById('md-badge'); const btnArchivar = document.getElementById('btn-archivar-meta'); badge.classList.add('hidden'); btnArchivar.classList.add('hidden'); if (m.estado === 'archivada') { document.getElementById('md-porcentaje').innerText = "META ARCHIVADA EN HISTORIAL"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--text-muted)"; } else if (porcentaje >= 100) { document.getElementById('md-porcentaje').innerText = "100% - ¡OBJETIVO CUMPLIDO!"; document.getElementById('md-porcentaje').style.color = "var(--ingreso)"; document.getElementById('md-barra').style.background = "var(--ingreso)"; badge.classList.remove('hidden'); btnArchivar.classList.remove('hidden'); } else { document.getElementById('md-porcentaje').innerText = porcentaje.toFixed(1) + "% COMPLETADO"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--primary)"; } document.getElementById('meta-detalle-modal').style.display = 'flex'; }
+        function abrirDetalleMeta(index) { indiceMetaActualVista = index; const m = misDatos.datos.metas[index]; const porcentaje = Math.min((m.ahorrado / m.costo) * 100, 100); document.getElementById('md-info-principal').classList.remove('hidden'); document.getElementById('md-historial-seccion').classList.add('hidden'); document.getElementById('md-titulo').innerText = m.nombre; document.getElementById('md-fecha-creacion').innerText = "Creado el: " + (m.fechaCreacion || 'Desconocida'); document.getElementById('md-desc').innerText = m.descripcion || "Sin descripción."; document.getElementById('md-ahorrado').innerText = "$" + m.ahorrado.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-costo').innerText = "$" + m.costo.toLocaleString('en-US', {minimumFractionDigits: 2}); document.getElementById('md-barra').style.width = porcentaje + "%"; const badge = document.getElementById('md-badge'); const btnArchivar = document.getElementById('btn-archivar-meta'); badge.classList.add('hidden'); btnArchivar.classList.add('hidden'); if (m.estado === 'archivada') { document.getElementById('md-porcentaje').innerText = "META ARCHIVADA EN HISTORIAL"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--text-muted)"; } else if (porcentaje >= 100) { document.getElementById('md-porcentaje').innerText = "100% - ¡OBJETIVO CUMPLIDO!"; document.getElementById('md-porcentaje').style.color = "var(--ingreso)"; document.getElementById('md-barra').style.background = "var(--ingreso)"; badge.classList.remove('hidden'); btnArchivar.classList.remove('hidden'); } else { document.getElementById('md-porcentaje').innerText = porcentaje.toFixed(1) + "% COMPLETADO"; document.getElementById('md-porcentaje').style.color = "var(--text-muted)"; document.getElementById('md-barra').style.background = "var(--primary)"; } document.getElementById('meta-detalle-modal').style.display = 'flex'; }
         
         function archivarMetaActual() { 
             const m = misDatos.datos.metas[indiceMetaActualVista];
             solicitarConfirmacion(
-                `¡Felicidades por alcanzar "${m.nombre}"!\n\n¿Este gasto fue un activo fijo (que suma a tu riqueza, ej: auto, pc) o un gasto consumible (ej: viaje, fiesta)?\n\nAmbas opciones descontarán los $${m.ahorrado.toLocaleString('en-US')} de tus ahorros.`,
+                `¡Felicidades por alcanzar "${m.nombre}"!\n\n¿Este gasto fue un activo fijo  o un gasto consumible?\n\nSe descontarán los $${m.ahorrado.toLocaleString('en-US')} de tus ahorros.`,
                 function() { 
                     m.estado = 'archivada'; 
                     misDatos.datos.activos.push({ nombre: m.nombre, categoria: 'Otro', valor: m.ahorrado, id: crypto.randomUUID(), fecha: new Date().toLocaleDateString('es-ES') }); 
