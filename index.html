@@ -13,19 +13,33 @@
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 
+    <script>
+        const temaGuardado = localStorage.getItem('tohka_theme') || 'dark';
+        if (temaGuardado === 'light') document.documentElement.classList.remove('dark-mode');
+    </script>
+
     <style>
         :root {
-            --bg-body: #18191a; --bg-card: #242526; --text-main: #e4e6eb; --text-muted: #b0b3b8;
             --primary: #0099a8; --ingreso: #36a420; --egreso: #d32f2f; --deuda: #f57c00; --gold: #ffd700;
             --excel: #107c41; --purple: #9b7bb3; --activo: #17a2b8; --danger: #dc3545;
-            --border: #3e4042; --shadow: 0 4px 8px rgba(0, 0, 0, 0.4); --radius: 12px;
+            --radius: 12px;
+        }
+        html {
+            --bg-body: #f0f2f5; --bg-card: #ffffff; --text-main: #1c1e21; --text-muted: #65676b;
+            --border: #ced0d4; --shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            --overlay-bg: rgba(0,0,0,0.08); --overlay-subtle: rgba(0,0,0,0.03);
+        }
+        html.dark-mode {
+            --bg-body: #18191a; --bg-card: #242526; --text-main: #e4e6eb; --text-muted: #b0b3b8;
+            --border: #3e4042; --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --overlay-bg: rgba(255,255,255,0.08); --overlay-subtle: rgba(255,255,255,0.03);
         }
         
         * { box-sizing: border-box; -ms-overflow-style: none; scrollbar-width: none; }
         *::-webkit-scrollbar { display: none; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; transition: background 0.3s ease; }
         body.no-scroll { overflow: hidden; } 
-        h2, h3, h4 { margin-top: 0; font-weight: 600; }
+        h2, h3, h4 { margin-top: 0; font-weight: 600; color: var(--text-main); }
         
         button { cursor: pointer; padding: 10px 16px; border: none; border-radius: 8px; background: var(--primary); color: white; font-weight: 600; font-size: 14px; transition: all 0.2s; outline: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
         button:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -76,16 +90,15 @@
         .header-brand { display: flex; align-items: center; gap: 15px; }
         .brand-icon-box { background: transparent; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease-in-out; flex-shrink: 0;}
         .brand-icon-box img { width: 100%; height: 100%; object-fit: contain; }
-        .brand-icon-box:hover { transform: scale(1.05); }
         .brand-text-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
         .brand-text-container h2 { margin: 0; font-size: 1.6em; color: var(--text-main); letter-spacing: 1px; line-height: 1; display: flex; align-items: center;}
         .brand-subtitle { font-size: 10px; color: var(--primary); font-weight: 800; letter-spacing: 1.5px; line-height: 1; margin: 0; }
         
-        .hamburger-btn { display: none; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--primary); padding: 8px; border-radius: 8px; cursor: pointer; align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .hamburger-btn { display: none; background: var(--overlay-bg); border: 1px solid var(--border); color: var(--primary); padding: 8px; border-radius: 8px; cursor: pointer; align-items: center; justify-content: center; transition: all 0.2s ease; }
         .hamburger-btn:hover { background: rgba(0, 153, 168, 0.15); }
 
         .session-trigger { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-top: 2px; cursor: pointer; transition: all 0.2s; padding: 2px 6px; margin-left: -6px; border-radius: 6px; user-select: none; display: inline-block; }
-        .session-trigger:hover { background: rgba(255,255,255,0.05); color: var(--primary); } 
+        .session-trigger:hover { background: var(--overlay-bg); color: var(--primary); } 
         #session-history-container { margin-top: 5px; padding-left: 8px; border-left: 2px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
         .session-history-item { font-size: 11px; color: var(--text-muted); }
 
@@ -106,7 +119,7 @@
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .card { background: var(--bg-card); padding: 25px 25px 35px 25px; border-radius: var(--radius); box-shadow: var(--shadow); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border: 2px solid transparent; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column;}
         .card.active-detail { border-color: var(--primary); background: rgba(0, 153, 168, 0.08); }
-        .card::after { content: 'Ver detalles de hoy ↓'; position: absolute; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 10px; background: rgba(255,255,255,0.03); color: var(--text-muted); padding: 5px 0; opacity: 0; transition: opacity 0.3s ease; }
+        .card::after { content: 'Ver detalles de hoy ↓'; position: absolute; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 10px; background: var(--overlay-subtle); color: var(--text-muted); padding: 5px 0; opacity: 0; transition: opacity 0.3s ease; }
         .card:hover::after { opacity: 1; }
         .card-label { font-size: 0.85em; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; margin-bottom: 15px;} 
         .card-bottom-content { margin-top: auto; }
@@ -120,7 +133,7 @@
 
         .grafico-container { background: var(--bg-card); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; max-width: 700px; margin-left: auto; margin-right: auto;}
         .leyenda-grafico { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; width: 100%; max-width: 500px;}
-        .leyenda-item { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);}
+        .leyenda-item { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; background: var(--overlay-subtle); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);}
         .leyenda-color-txt { display: flex; align-items: center; }
         .color-dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
 
@@ -129,7 +142,7 @@
 
         .table-container { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); overflow-x: auto;}
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th { background: rgba(255,255,255,0.02); font-size: 0.85em; text-transform: uppercase; color: var(--text-muted); text-align: center !important; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+        th { background: var(--overlay-subtle); font-size: 0.85em; text-transform: uppercase; color: var(--text-muted); text-align: center !important; padding: 14px 16px; border-bottom: 1px solid var(--border); }
         td { padding: 14px 16px; text-align: center; border-bottom: 1px solid var(--border); }
         tr:last-child td { border-bottom: none; }
         .col-detalle { text-align: left !important; }
@@ -139,7 +152,7 @@
         .movimientos-actions-top { display: flex; justify-content: flex-end; }
         .btn-excel { background: var(--excel); color: white; } .btn-excel:hover { background: #0c5e31; }
         .filtros-container-unified { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--bg-card); padding: 15px; border-radius: var(--radius); border: 1px solid var(--border); }
-        .filtro-group { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: 0 10px; background: rgba(255,255,255,0.02); }
+        .filtro-group { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: 0 10px; background: var(--overlay-subtle); }
         .filtro-group span { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-right: 5px; }
         .filtro-group input, .filtro-group select { border: none; background: transparent; margin-bottom: 0; padding: 8px; }
         #fila-subfiltros { display: flex; gap: 10px; width: 100%; }
@@ -147,7 +160,7 @@
         .activos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         .activo-card { background: var(--bg-card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border: 1px solid var(--border); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative;}
         .activo-cat-badge { display: inline-block; background: rgba(23, 162, 184, 0.15); color: var(--activo); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
-        .activo-titulo { font-size: 16px; font-weight: 700; margin: 0 0 15px 0; color: #ffffff; }
+        .activo-titulo { font-size: 16px; font-weight: 700; margin: 0 0 15px 0; color: var(--text-main); }
         .activo-valor { font-size: 20px; font-weight: 700; color: var(--activo); margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;}
         
         .metas-top-bar { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--border); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;}
@@ -166,7 +179,7 @@
         .meta-img-box { width: 60px; height: 60px; background: transparent; margin-bottom: 5px; } 
         .meta-img-box img { width: 100%; height: 100%; object-fit: contain; }
         .meta-info { padding: 15px; text-align: center; width: 100%; }
-        .meta-title { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 5px; color: #ffffff; }
+        .meta-title { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 5px; color: var(--text-main); }
         .barra-progreso-mini { width: 100%; background: var(--border); height: 8px; border-radius: 4px; margin-bottom: 8px; overflow: hidden; }
         .progreso-fill-mini { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease; }
         .meta-card-compact.cumplida .progreso-fill-mini { background: var(--ingreso); }
@@ -185,15 +198,15 @@
 
         .switch { position: relative; display: inline-block; width: 50px; height: 26px; flex-shrink: 0; } 
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #3e4042; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
         input:checked + .slider { background-color: var(--primary); } 
         input:checked + .slider:before { transform: translateX(24px); }
 
         .custom-file-container { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: 5px; background: var(--bg-card); height: 43px; box-sizing: border-box; width: 100%; margin-bottom: 15px; }
-        .custom-file-btn { background: rgba(255,255,255,0.08); color: var(--text-main); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: 600; margin-right: 10px; transition: background 0.3s ease; flex-shrink: 0;}
+        .custom-file-btn { background: var(--overlay-bg); color: var(--text-main); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: 600; margin-right: 10px; transition: background 0.3s ease; flex-shrink: 0;}
         .file-name-display { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-        .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); } .btn-secondary:hover { background: rgba(255,255,255,0.05); color: var(--text-main); border-color: var(--text-muted); }
+        .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); } .btn-secondary:hover { background: var(--overlay-bg); color: var(--text-main); border-color: var(--text-muted); }
         .link-historial { font-size: 12px; color: var(--primary); cursor: pointer; font-weight: 600; margin-top: 5px; display: inline-block; } .link-historial:hover { text-decoration: underline; }
         input[type="file"] { display: none; }
         .btn-danger-text { color: var(--danger); border-color: transparent; } .btn-danger-text:hover { background: rgba(220, 53, 69, 0.15); color: var(--danger); border-color: transparent;}
@@ -203,7 +216,7 @@
 
         .rec-item { padding: 15px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .rec-item:last-child { border-bottom: none; }
-        .rec-titulo { font-weight: 600; color: #fff; margin-bottom: 4px; }
+        .rec-titulo { font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
         .rec-detalle { font-size: 11px; color: var(--text-muted); }
 
         @media (max-width: 768px) {
@@ -213,9 +226,10 @@
             .brand-text-container { flex: 1; align-items: flex-start !important; text-align: left !important; }
             .hamburger-btn { display: flex; }
             
-            .tabs { flex-direction: column; overflow: hidden; max-height: 0; padding: 0; margin-bottom: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease, opacity 0.3s ease; }
-            .tabs.open { max-height: 400px; padding: 10px; margin-bottom: 25px; opacity: 1; }
-            .tab-btn { text-align: left; padding: 12px 20px; font-size: 15px; margin-bottom: 5px; }
+            .tabs { position: absolute; width: calc(100% - 40px); left: 20px; top: 85px; background: rgba(36, 37, 38, 0.95); backdrop-filter: blur(10px); flex-direction: column; border-radius: var(--radius); box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid var(--border); z-index: 2000; transform-origin: top right; transform: scale(0.95); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); padding: 0; margin: 0; }
+            html:not(.dark-mode) .tabs { background: rgba(255, 255, 255, 0.95); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+            .tabs.open { transform: scale(1); opacity: 1; visibility: visible; padding: 10px; }
+            .tab-btn { text-align: left; padding: 14px 20px; font-size: 15px; margin-bottom: 5px; border-radius: 8px; background: transparent; }
 
             .grid-2-cols > div:nth-child(2) { margin-top: 15px !important; }
             .header-actions { width: 100%; display: flex; gap: 10px; }
@@ -439,7 +453,7 @@
         <div id="metas" class="tab-content fade-in">
             <div class="metas-top-bar">
                 <div>
-                    <h3 style="margin: 0 0 15px 0; color: var(--text-main); font-size: 1.5em;">Gestión de objetivos</h3>
+                    <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Gestión de objetivos</h3>
                     <div class="sub-tabs-container">
                         <button class="sub-tab-btn active" onclick="cambiarSubPestanaMetas('activas', this)">Activas</button>
                         <button class="sub-tab-btn" onclick="cambiarSubPestanaMetas('archivadas', this)">Historial</button>
@@ -454,7 +468,7 @@
         <div id="pestana-deudas" class="tab-content fade-in">
             <div class="metas-top-bar">
                 <div>
-                    <h3 style="margin: 0 0 15px 0; color: var(--text-main); font-size: 1.5em;">Amortización de Deudas</h3>
+                    <h3 style="margin: 0 0 15px 0; font-size: 1.5em;">Amortización de Deudas</h3>
                     <div class="sub-tabs-container">
                         <button class="sub-tab-btn active" onclick="cambiarSubPestanaDeudas('activas', this)">Pendientes</button>
                         <button class="sub-tab-btn" onclick="cambiarSubPestanaDeudas('pagadas', this)">Liquidadas</button>
@@ -477,20 +491,28 @@
                 </div>
             </div>
 
+            <div class="config-item" style="border-left: 4px solid var(--primary);">
+                <div>
+                    <h3 style="margin-bottom: 5px;">Modo Oscuro</h3>
+                    <span style="color: var(--text-muted); font-size: 13px;">Cambia la apariencia visual de la aplicación.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="toggle-tema" onchange="toggleModoOscuro()"><span class="slider"></span></label>
+            </div>
+
             <div class="config-item" style="border-left: 4px solid var(--purple); flex-direction: column; align-items: stretch; padding: 0; overflow: hidden;">
                 <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <h3 style="margin-bottom: 5px; color: var(--text-main);">Pagos Automáticos</h3>
+                        <h3 style="margin-bottom: 5px;">Pagos Automáticos</h3>
                         <span style="color: var(--text-muted); font-size: 13px;">Programa el pago de tus servicios.</span>
                     </div>
                     <button style="background: var(--purple);" onclick="abrirModalRecurrente()">+ Agregar</button>
                 </div>
-                <div id="lista-recurrentes" style="background: rgba(0,0,0,0.2); max-height: 200px; overflow-y: auto;"></div>
+                <div id="lista-recurrentes" style="background: var(--overlay-bg); max-height: 200px; overflow-y: auto;"></div>
             </div>
             
             <div class="config-item" style="border-left: 4px solid var(--text-muted);">
                 <div>
-                    <span style="color: #ffffff; font-size: 14px;">Guarda un respaldo de tus datos y sal de la bóveda.</span>
+                    <span style="color: var(--text-main); font-size: 14px;">Guarda un respaldo de tus datos y sal de la bóveda.</span>
                 </div>
                 <button class="btn-secondary" onclick="cerrarSesionApp()">Cerrar sesión</button>
             </div>
@@ -503,7 +525,9 @@
         <h3>Registrar movimiento</h3>
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Tipo de transacción:</label>
         <select id="reg-tipo" onchange="verificarFormularioRegistro()" style="margin-bottom: 10px;">
-            <option value="Ingreso">Ingreso</option><option value="Egreso">Gasto</option><option value="Ahorro">Ahorro</option><option value="Deuda">Préstamo Adquirido (Solo liquidez)</option><option value="PagoDeuda">Abono a Deuda (Manual)</option>
+            <option value="Ingreso">Ingreso</option>
+            <option value="Egreso">Gasto</option>
+            <option value="Ahorro">Ahorro</option>
         </select>
         
         <div id="caja-categoria-egreso" class="hidden">
@@ -513,7 +537,7 @@
             </select>
         </div>
 
-        <div id="caja-gasto-hormiga" class="config-item hidden" style="padding: 12px 15px; margin-bottom: 15px; background: rgba(255,255,255,0.02); box-shadow: none; border: 1px solid var(--border);">
+        <div id="caja-gasto-hormiga" class="config-item hidden" style="padding: 12px 15px; margin-bottom: 15px; background: var(--overlay-subtle); box-shadow: none; border: 1px solid var(--border);">
             <div><h4 style="margin-bottom: 2px; font-size: 14px;">Gasto hormiga 🐜</h4><span style="color: var(--text-muted); font-size: 11px;">Marcar como gasto pequeño/diario.</span></div>
             <label class="switch"><input type="checkbox" id="reg-gasto-hormiga"><span class="slider"></span></label>
         </div>
@@ -569,7 +593,7 @@
         <input type="text" id="nd-nombre" placeholder="Ej. Tarjeta de Crédito, Préstamo Tía">
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Monto total de la deuda ($):</label>
         <input type="number" inputmode="decimal" id="nd-monto" placeholder="0.00" step="0.01" min="0.01">
-        <div class="config-item" style="padding: 12px 15px; margin-bottom: 15px; background: rgba(255,255,255,0.02); box-shadow: none; border: 1px solid var(--border);">
+        <div class="config-item" style="padding: 12px 15px; margin-bottom: 15px; background: var(--overlay-subtle); box-shadow: none; border: 1px solid var(--border);">
             <div><h4 style="margin-bottom: 2px; font-size: 14px;">Deuda Pasada (Pre-existente)</h4><span style="color: var(--text-muted); font-size: 11px;">Actívalo si es vieja. Apágalo si recibiste dinero HOY en mano.</span></div>
             <label class="switch"><input type="checkbox" id="nd-es-pasada" checked><span class="slider"></span></label>
         </div>
@@ -578,7 +602,7 @@
 
     <div id="modal-pago-deuda" class="modal-overlay"><div class="modal-card modal-sm">
         <h3 style="color: var(--deuda);" id="pd-titulo">Abonar a Deuda</h3>
-        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+        <div style="background: var(--overlay-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
             <span style="font-size: 12px; color: var(--text-muted); display: block;">Saldo Pendiente</span>
             <span style="font-size: 24px; font-weight: bold; color: var(--deuda);" id="pd-saldo-pendiente">$0.00</span>
         </div>
@@ -612,7 +636,7 @@
                 <h2 id="md-titulo" style="margin-bottom: 5px; color: var(--primary);">Titulo</h2>
                 <div id="md-fecha-creacion" style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">Creado el: -</div>
                 <div id="md-desc" style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">Descripción...</div>
-                <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <div style="background: var(--overlay-subtle); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;"><span style="color: var(--text-main); font-weight: 600;">Costo total:</span><span style="color: var(--text-main); font-weight: bold;" id="md-costo">$0.00</span></div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 2px;"><span style="font-weight: 600; color: var(--text-muted);">Ahorrado:</span><span style="font-weight: bold; color: var(--primary);" id="md-ahorrado">$0.00</span></div>
                     <div style="text-align: right;"><span class="link-historial" id="md-btn-historial" onclick="toggleHistorialMeta()">Ver historial</span></div>
@@ -636,13 +660,13 @@
         <h3>Perfil de usuario</h3>
         <div style="text-align: center; margin-bottom: 15px;"><div class="profile-avatar" style="width: 80px; height: 80px; margin: 0 auto 10px auto;"><img src="icon-192.png" alt="Perfil"></div></div>
         <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Nombres completos:</label><input type="text" id="perfil-nombres" placeholder="Nombres">
-        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Usuario de acceso:</label><input type="text" id="perfil-usuario-readonly" disabled style="background: rgba(255,255,255,0.05);">
+        <label style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display:block;">Usuario de acceso:</label><input type="text" id="perfil-usuario-readonly" disabled style="background: var(--overlay-bg);">
         <div class="modal-footer"><button onclick="cerrarModal('perfil-modal')" class="btn-secondary">Cancelar</button><button onclick="guardarPerfil()">Guardar</button></div>
     </div></div>
 
     <script>
-        const CLIENT_ID = '872198938997-ojphno5r5pivksqtg5g6d4blqdat389g.apps.googleusercontent.com';
-        const API_KEY = 'AIzaSyBUXKG_Y22ryAyjagPwz-hhaltUxmtD5yc';
+        const CLIENT_ID = 'TU_CLIENT_ID_AQUI';
+        const API_KEY = 'TU_API_KEY_AQUI';
         const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
         const SCOPES = 'https://www.googleapis.com/auth/drive.file';
 
@@ -658,8 +682,26 @@
         window.addEventListener('offline', updateOnlineStatus);
         function updateOnlineStatus() { const dot = document.getElementById('network-status-dot'); if (navigator.onLine) { dot.style.background = 'var(--ingreso)'; dot.title = 'Conectado'; } else { dot.style.background = 'var(--egreso)'; dot.title = 'Modo Local (Sin Internet)'; } }
         
+        function toggleModoOscuro() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark-mode')) {
+                html.classList.remove('dark-mode');
+                localStorage.setItem('tohka_theme', 'light');
+            } else {
+                html.classList.add('dark-mode');
+                localStorage.setItem('tohka_theme', 'dark');
+            }
+            actualizarToggleUI();
+        }
+
+        function actualizarToggleUI() {
+            const toggle = document.getElementById('toggle-tema');
+            if(toggle) toggle.checked = document.documentElement.classList.contains('dark-mode');
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             updateOnlineStatus();
+            actualizarToggleUI();
             const dataGuardada = localStorage.getItem('tohka_boveda_data');
             if(dataGuardada) {
                 misDatos = JSON.parse(dataGuardada);
@@ -895,7 +937,7 @@
             const labels = []; const data = []; const bgColors = [];
             for (const cat in categoriasGastos) { labels.push(cat); data.push(categoriasGastos[cat]); bgColors.push(colores[cat] || '#b0b3b8'); const pct = totalMes > 0 ? (categoriasGastos[cat] / totalMes * 100).toFixed(1) : 0; leyendaContainer.innerHTML += `<div class="leyenda-item"><div class="leyenda-color-txt"><div class="color-dot" style="background: ${colores[cat] || '#b0b3b8'};"></div>${cat}</div><span>$${categoriasGastos[cat].toLocaleString('en-US', {minimumFractionDigits: 2})} (${pct}%)</span></div>`; }
             const ctx = document.getElementById('flujoChart').getContext('2d'); if (graficoCircular) graficoCircular.destroy();
-            if(totalMes === 0) { leyendaContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size:12px;">No hay gastos.</div>'; graficoCircular = new Chart(ctx, { type: 'doughnut', data: { datasets: [{ data: [1], backgroundColor: ['#3e4042'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { tooltip: { enabled: false } }, animation: false } }); return; }
+            if(totalMes === 0) { leyendaContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size:12px;">No hay gastos.</div>'; graficoCircular = new Chart(ctx, { type: 'doughnut', data: { datasets: [{ data: [1], backgroundColor: ['#999999'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { tooltip: { enabled: false } }, animation: false } }); return; }
             graficoCircular = new Chart(ctx, { type: 'doughnut', data: { labels: labels, datasets: [{ data: data, backgroundColor: bgColors, borderWidth: 0, hoverOffset: 5 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ' $' + context.raw.toLocaleString('en-US', {minimumFractionDigits: 2}); } } } } } });
         }
 
